@@ -5,8 +5,9 @@ import { AuthProvider } from "./context/AuthContext"
 import Login from "./components/auth/Login"
 import StudentHome from "./components/pages/student/StudentHome"
 import TeacherHome from "./components/pages/teacher/TeacherHome"
-import Page from "./app/dashboard/page"
 import AdministratorLayout from "./components/layout/AdministratorLayout"
+import AdministratorHome from "./components/pages/administrator/AdministratorHome"
+import AllAccount from "./components/pages/administrator/AllAccount"
 
 
 function App() {
@@ -24,8 +25,8 @@ function App() {
           <Route path="/student-home" element={<StudentHome></StudentHome>}></Route>
           <Route path="/teacher-home" element={<TeacherHome></TeacherHome>}></Route>
           <Route path="/administrator-home" element={<AdministratorLayout></AdministratorLayout>}>
-            <Route index></Route>
-            
+            <Route index element={<AdministratorHome></AdministratorHome>}></Route>
+            <Route path="account" element={<AllAccount></AllAccount>}></Route>
             {/* <Route path="history" element={<HistoryPage/>}></Route> */}
           </Route>
         </Route>

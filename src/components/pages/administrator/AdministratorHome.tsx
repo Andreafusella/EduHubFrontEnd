@@ -1,10 +1,9 @@
-import SidebarAdministrator from "../../commonPlus/SidebarAdministrator"
-
 const AdministratorHome = () => {
   return (
     <>
-      <SidebarAdministrator></SidebarAdministrator>
-      
+      <div>
+        <h1>AdministratorHome</h1>
+      </div>
     </>
   )
 }

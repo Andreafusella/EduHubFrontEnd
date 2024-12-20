@@ -4,9 +4,11 @@ import SidebarAdministrator from '../commonPlus/SidebarAdministrator'
 function AdministratorLayout() {
   return (
     <>
-        <div className='flex'>
+        <div className='flex '>
             <SidebarAdministrator></SidebarAdministrator>
-            <Outlet></Outlet>
+            <div className='flex-1'>
+              <Outlet></Outlet>
+            </div>
         </div>
     </>
   )

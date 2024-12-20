@@ -1,4 +1,4 @@
-import { ChevronRight, GraduationCap, Settings2, User, MoreHorizontal } from "lucide-react"
+import { ChevronRight, GraduationCap, Settings2, User, MoreHorizontal, ChevronDown } from "lucide-react"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
@@ -9,6 +9,8 @@ function SidebarAdministrator() {
     const toggleAccountMenu = () => {
         setIsUserOpen(!isUserOpen)
     }
+
+
 
     return (
         <>
@@ -26,12 +28,12 @@ function SidebarAdministrator() {
                                     <User strokeWidth={1}></User>
                                     <h1 className="font-extralight">User</h1>
                                 </div>
-                                <ChevronRight strokeWidth={1} className="size-[20px]"></ChevronRight>
+                                {isUserOpen ? <ChevronDown strokeWidth={1} className="size-[20px]"></ChevronDown> : <ChevronRight strokeWidth={1} className="size-[20px]"></ChevronRight>}
                             </div>
                         </div>
                         {isUserOpen && (
                             <div className="flex flex-col gap-1 pl-4">
-                                <Link to={"/service"} className="hover:bg-slate-200 p-2 rounded-xl transition-all">Service</Link>
+                                <Link to={"/administrator-home/account"} className="hover:bg-slate-200 p-2 rounded-xl transition-all">Service</Link>
                                 <Link to={"/management"} className="hover:bg-slate-200 p-2 rounded-xl transition-all">Management</Link>
                                 <Link to={"/delete"} className="hover:bg-slate-200 p-2 rounded-xl transition-all">Delete</Link>
                             </div>
