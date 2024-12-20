@@ -1,4 +1,4 @@
-import { ChevronRight, GraduationCap, Settings2, User, MoreHorizontal, ChevronDown } from "lucide-react"
+import { ChevronRight, GraduationCap, Settings2, User, MoreHorizontal, ChevronDown, House } from "lucide-react"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
@@ -14,7 +14,7 @@ function SidebarAdministrator() {
 
     return (
         <>
-            <div className="bg-gray-100 w-[250px] h-screen pt-6 flex flex-col justify-between">
+            <div className="bg-gray-50 w-[250px] h-screen pt-6 flex flex-col justify-between">
                 <div>
                     <div className="flex flex-col items-center gap-1">
                         <h1>Logo</h1>
@@ -25,8 +25,8 @@ function SidebarAdministrator() {
                         <div className="hover:bg-slate-200 p-2 rounded-xl transition-all cursor-pointer" onClick={toggleAccountMenu}>
                             <div className="flex justify-between items-center">
                                 <div className="flex gap-2">
-                                    <User strokeWidth={1}></User>
-                                    <h1 className="font-extralight">User</h1>
+                                    <User strokeWidth={1.3}></User>
+                                    <h1 className="font-light">User</h1>
                                 </div>
                                 {isUserOpen ? <ChevronDown strokeWidth={1} className="size-[20px]"></ChevronDown> : <ChevronRight strokeWidth={1} className="size-[20px]"></ChevronRight>}
                             </div>
@@ -41,8 +41,8 @@ function SidebarAdministrator() {
                         <Link to={"/"} className="hover:bg-slate-200 p-2 rounded-xl transition-all">
                             <div className="flex justify-between items-center">
                                 <div className="flex gap-2">
-                                    <GraduationCap strokeWidth={1}></GraduationCap>
-                                    <h1 className="font-extralight">Course</h1>
+                                    <House strokeWidth={1.3}></House>
+                                    <h1 className="font-light">Home Page</h1>
                                 </div>
                                 <ChevronRight strokeWidth={1} className="size-[20px]"></ChevronRight>
                             </div>
@@ -50,8 +50,17 @@ function SidebarAdministrator() {
                         <Link to={"/"} className="hover:bg-slate-200 p-2 rounded-xl transition-all">
                             <div className="flex justify-between items-center">
                                 <div className="flex gap-2">
-                                    <Settings2 strokeWidth={1}></Settings2>
-                                    <h1 className="font-extralight">Settings</h1>
+                                    <GraduationCap strokeWidth={1.3}></GraduationCap>
+                                    <h1 className="font-light">Course</h1>
+                                </div>
+                                <ChevronRight strokeWidth={1} className="size-[20px]"></ChevronRight>
+                            </div>
+                        </Link>
+                        <Link to={"/"} className="hover:bg-slate-200 p-2 rounded-xl transition-all">
+                            <div className="flex justify-between items-center">
+                                <div className="flex gap-2">
+                                    <Settings2 strokeWidth={1.3}></Settings2>
+                                    <h1 className="font-light">Settings</h1>
                                 </div>
                                 <ChevronRight strokeWidth={1} className="size-[20px]"></ChevronRight>
                             </div>
@@ -65,7 +74,7 @@ function SidebarAdministrator() {
                         <AvatarImage src="https://github.com/shadcn.png" className="size-[30px] rounded-xl"/>
                         <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
-                    <h1 className="font-extralight">Nome Utente</h1>
+                    <h1 className="font-medium">Nome Utente</h1>
                 </div>
             </div>
         </>
