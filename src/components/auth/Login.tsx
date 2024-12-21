@@ -129,7 +129,7 @@ function Login() {
                         <AlertTitle>Login Successful!</AlertTitle>
                         <AlertDescription>
                             You will be redirected to the home page in 3 seconds or click{" "}
-                            <Link to="/auth/login" className="underline font-bold">
+                            <Link to="/administrator-home" className="underline font-bold">
                                 here
                             </Link>
                         </AlertDescription>

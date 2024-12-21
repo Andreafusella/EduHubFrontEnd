@@ -1,15 +1,51 @@
-import { ChevronRight, GraduationCap, Settings2, User, MoreHorizontal, ChevronDown, House } from "lucide-react"
+import { ChevronRight, GraduationCap, Settings2, User, ChevronDown, House } from "lucide-react"
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
+import axios from "axios";
+
+interface ICourseProps {
+    id_course: number;
+    name: string;
+    description: string;
+    dateStart: Date;
+    dateFinish: Date;
+    id_teacher: number;
+}
+
 
 function SidebarAdministrator() {
     const [isUserOpen, setIsUserOpen] = useState(false)
+    const [isCourseOpen, setIsCourseOpen] = useState(false)
+    const [course, setCourse] = useState<ICourseProps[]>([])
 
-    const toggleAccountMenu = () => {
+    useEffect(() => {
+        async function fetchCourse() {
+            try {
+                const res = await axios.get<ICourseProps[]>("http://localhost:8000/courses");
+                const data = res.data.map((course) => ({
+                    ...course,
+                    dateStart: new Date(course.dateStart),
+                    dateFinish: new Date(course.dateFinish)
+                }))
+                setCourse(data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        fetchCourse()
+    }, [])
+
+    function toggleAccountMenu() {
         setIsUserOpen(!isUserOpen)
     }
 
+    function toggleCourseMenu() {
+        setIsCourseOpen(!isCourseOpen)
+    }
+
+    
 
 
     return (
@@ -22,6 +58,15 @@ function SidebarAdministrator() {
                     </div>
                     <hr className="my-5 mx-5"/>
                     <div className="mx-3 flex flex-col gap-3">
+                        <Link to={"#"} className="hover:bg-slate-200 p-2 rounded-xl transition-all">
+                            <div className="flex justify-between items-center">
+                                <div className="flex gap-2">
+                                    <House strokeWidth={1.3}></House>
+                                    <h1 className="font-light">Home Page</h1>
+                                </div>
+                                <ChevronRight strokeWidth={1} className="size-[20px]"></ChevronRight>
+                            </div>
+                        </Link>
                         <div className="hover:bg-slate-200 p-2 rounded-xl transition-all cursor-pointer" onClick={toggleAccountMenu}>
                             <div className="flex justify-between items-center">
                                 <div className="flex gap-2">
@@ -38,24 +83,30 @@ function SidebarAdministrator() {
                                 <Link to={"/delete"} className="hover:bg-slate-200 p-2 rounded-xl transition-all">Delete</Link>
                             </div>
                         )}
-                        <Link to={"/"} className="hover:bg-slate-200 p-2 rounded-xl transition-all">
-                            <div className="flex justify-between items-center">
-                                <div className="flex gap-2">
-                                    <House strokeWidth={1.3}></House>
-                                    <h1 className="font-light">Home Page</h1>
-                                </div>
-                                <ChevronRight strokeWidth={1} className="size-[20px]"></ChevronRight>
-                            </div>
-                        </Link>
-                        <Link to={"/"} className="hover:bg-slate-200 p-2 rounded-xl transition-all">
+                        
+                        <div className="hover:bg-slate-200 p-2 rounded-xl transition-all cursor-pointer" onClick={toggleCourseMenu}>
                             <div className="flex justify-between items-center">
                                 <div className="flex gap-2">
                                     <GraduationCap strokeWidth={1.3}></GraduationCap>
                                     <h1 className="font-light">Course</h1>
                                 </div>
-                                <ChevronRight strokeWidth={1} className="size-[20px]"></ChevronRight>
+                                {isCourseOpen ? <ChevronDown strokeWidth={1} className="size-[20px]"></ChevronDown> : <ChevronRight strokeWidth={1} className="size-[20px]"></ChevronRight>}
+                            </div>                                          
+                        </div>
+                        {isCourseOpen && (
+                            <div className="flex flex-col gap-1 pl-1">
+                                {course.map((c) => (
+                                    <Link key={c.id_course} to={`/courses/${c.id_course}`} className="hover:bg-slate-200 p-2 rounded-xl transition-all">
+                                        <div className="flex gap-2 items-center">
+                                            <div className="w-10 h-10 p-3 rounded-full bg-green-500 flex items-center justify-center text-white font-bold">
+                                                {c.name.charAt(0)}
+                                            </div>
+                                            {c.name}
+                                        </div>
+                                    </Link>
+                                ))}
                             </div>
-                        </Link>
+                        )}
                         <Link to={"/"} className="hover:bg-slate-200 p-2 rounded-xl transition-all">
                             <div className="flex justify-between items-center">
                                 <div className="flex gap-2">
