@@ -8,12 +8,14 @@ import TeacherHome from "./components/pages/teacher/TeacherHome"
 import AdministratorLayout from "./components/layout/AdministratorLayout"
 import AdministratorHome from "./components/pages/administrator/AdministratorHome"
 import AllAccount from "./components/pages/administrator/AllAccount"
+import { SettingProvider } from "./context/SettingContext"
 
 
 function App() {
 
   return (
     <AuthProvider>
+    <SettingProvider>
       <Routes>
         <Route path="/" element={<LandingLayout></LandingLayout>}>
           <Route index element={<LandingPage></LandingPage>}></Route>
@@ -32,6 +34,7 @@ function App() {
         </Route>
         <Route path="*" element={<>Page not found!</>} />
       </Routes>
+    </SettingProvider>
     </AuthProvider>
   )
 }

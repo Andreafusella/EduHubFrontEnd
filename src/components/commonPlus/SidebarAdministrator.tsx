@@ -3,15 +3,7 @@ import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import axios from "axios";
-
-interface ICourseProps {
-    id_course: number;
-    name: string;
-    description: string;
-    dateStart: Date;
-    dateFinish: Date;
-    id_teacher: number;
-}
+import ICourseProps from "@/interface/Course";
 
 
 function SidebarAdministrator() {
@@ -29,8 +21,8 @@ function SidebarAdministrator() {
                     dateFinish: new Date(course.dateFinish)
                 }))
                 setCourse(data);
-            } catch (error) {
-                console.log(error);
+            } catch (err) {
+                console.log(err);
             }
         }
 

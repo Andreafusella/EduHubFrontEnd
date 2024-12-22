@@ -1,20 +1,29 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { Button } from '../ui/button'
-import { Eye, Pencil, Trash, User } from 'lucide-react'
+import { Eye, Pencil, Trash } from 'lucide-react'
+import ICardAccountProps from '@/interface/CardAccount'
+import { useSettingContext } from '@/context/SettingContext'
 
+function CardAccount({id_account, name, last_name, email, avatar} : ICardAccountProps) {
 
-function CardAccount() {
+    const {getAvatar} = useSettingContext()
+
+    const avatarIndex = getAvatar(avatar);
+
     return (
         <div>
-            <div className="bg-slate-100 p-4 rounded-xl flex items-center justify-between gap-5 w-[650px]">
+            <div className="bg-slate-100 p-4 rounded-xl flex items-center justify-between gap-5 w-[650px] my-2">
                 <div className='flex items-center gap-2'>
                     <Avatar>
-                        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" className='size-[50px] rounded-xl'/>
+                        <AvatarImage src={avatarIndex} className='size-[50px] rounded-xl'/>
                         <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                     <div className='flex flex-col'>
-                        <h1 className='text-xl font-bold'>John Doe</h1>
-                        <h1 className='text-sm font-extralight'>john.doe@example.com</h1>
+                        <div className='flex gap-1'>
+                            <h1 className='text-xl font-bold'>{name}</h1>
+                            <h1 className='text-xl font-bold'>{last_name}</h1>
+                        </div>
+                        <h1 className='text-sm font-extralight'>{email}</h1>
                     </div>
                 </div>
                 <div className='flex gap-3'>
