@@ -3,7 +3,6 @@ import { Fragment } from "react/jsx-runtime"
 import CardAccount from "../common/CardAccount"
 
 function AccountList({account} : IAccountListProps) {
-    console.log(account);
     
     return account.length > 0 ? (
     

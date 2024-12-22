@@ -9,6 +9,8 @@ import AdministratorLayout from "./components/layout/AdministratorLayout"
 import AdministratorHome from "./components/pages/administrator/AdministratorHome"
 import AllAccount from "./components/pages/administrator/AllAccount"
 import { SettingProvider } from "./context/SettingContext"
+import StudentPage from "./components/pages/administrator/StudentPage"
+import { GlobalProvider } from "./context/GlobalContext"
 
 
 function App() {
@@ -16,6 +18,7 @@ function App() {
   return (
     <AuthProvider>
     <SettingProvider>
+    <GlobalProvider>
       <Routes>
         <Route path="/" element={<LandingLayout></LandingLayout>}>
           <Route index element={<LandingPage></LandingPage>}></Route>
@@ -29,11 +32,13 @@ function App() {
           <Route path="/administrator-home" element={<AdministratorLayout></AdministratorLayout>}>
             <Route index element={<AdministratorHome></AdministratorHome>}></Route>
             <Route path="account" element={<AllAccount></AllAccount>}></Route>
-            {/* <Route path="history" element={<HistoryPage/>}></Route> */}
+            <Route path="student-page" element={<StudentPage></StudentPage>}></Route>
+
           </Route>
         </Route>
         <Route path="*" element={<>Page not found!</>} />
       </Routes>
+    </GlobalProvider>
     </SettingProvider>
     </AuthProvider>
   )

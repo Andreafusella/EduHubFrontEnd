@@ -3,12 +3,19 @@ import { Button } from '../ui/button'
 import { Eye, Pencil, Trash } from 'lucide-react'
 import ICardAccountProps from '@/interface/CardAccount'
 import { useSettingContext } from '@/context/SettingContext'
+import { useNavigate } from 'react-router-dom'
 
 function CardAccount({id_account, name, last_name, email, avatar} : ICardAccountProps) {
 
     const {getAvatar} = useSettingContext()
 
+    const navigate = useNavigate()
+
     const avatarIndex = getAvatar(avatar);
+
+    function navigateToView() {
+        navigate(`/administrator-home/student-page?id_account=${id_account}`);
+    }
 
     return (
         <div>
@@ -27,7 +34,8 @@ function CardAccount({id_account, name, last_name, email, avatar} : ICardAccount
                     </div>
                 </div>
                 <div className='flex gap-3'>
-                    <Button className='bg-slate-500 hover:bg-slate-600'>
+                    
+                    <Button onClick={navigateToView} className='bg-slate-500 hover:bg-slate-600'>
                         <Eye></Eye>
                         View
                     </Button>
