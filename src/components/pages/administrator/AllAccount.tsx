@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import { useGlobalContext } from "@/context/GlobalContext"
 import axios from "axios"
 import { useEffect, useState } from "react"
-
 function AllAccount() {
     const [pageAccount, setPageAccount] = useState(0)
 
@@ -33,6 +32,7 @@ function AllAccount() {
                     setopenAllStudent(true);
                     
                 } catch (err) {
+                    
                     console.log(err);
                 } finally {
                     setLoadingList(false)
@@ -103,7 +103,7 @@ function AllAccount() {
                                     <h1 className="font-bold text-2xl">Student List</h1>
                                     <Button onClick={() => setOpenDialogNewAccount(true)} className="bg-green-500 hover:bg-green-600">+</Button>
                                 </div>
-                                <AccountList account={student}></AccountList>
+                                <AccountList account={student} course={false}></AccountList>
                             </div>
                         }
                         

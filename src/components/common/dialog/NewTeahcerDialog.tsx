@@ -8,6 +8,8 @@ import axios from "axios"
 import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { z } from "zod"
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -66,7 +68,7 @@ function NewTeacherDialog({open, handleOpenDialog, role }: {open: boolean, handl
         };
         console.log(formData);
         setLoading(true);
-        setSuccess(false);
+        
         await newUser();
         async function newUser() {
             try {
@@ -75,16 +77,15 @@ function NewTeacherDialog({open, handleOpenDialog, role }: {open: boolean, handl
                 console.log(teacherNew);
                 
                 setTeacher((prev) => [teacherNew, ...prev]);
-                setSuccess(true);
-                // setTimeout(() => {
-                //     handleOpenDialog();
-                // }, 500);
+                toast.success("Teacher created successfully");
+                
                 handleOpenDialog();
             } catch (err) {
                 console.log(err);
+                toast.error("Failed to create teacher");
             } finally {
                 setLoading(false);
-                setSuccess(false);
+                
             }
         }
     }
@@ -190,15 +191,11 @@ function NewTeacherDialog({open, handleOpenDialog, role }: {open: boolean, handl
                     <div className="modal-action mt-2">
                         <Button onClick={handleOpenDialog} className="btn bg-gray-500 text-white hover:bg-gray-600" type="button">Chiudi</Button>
                         <Button disabled={isSubmitting} type="submit" className="btn bg-blue-600 text-white hover:bg-blue-700">
-                            {loading ? (
-                                success ? (
-                                    <img src="/public/svg/confirm.svg" className="size-[30px]" />
-                                ) : (
+                            {!loading ? (
                                     <span className="loading loading-spinner loading-sm"></span>
-                                )
-                            ) : (
-                                "Crea"
-                            )}
+                                ) : (
+                                    "Crea"
+                                )}
                         </Button>
                     </div>
                 </form>

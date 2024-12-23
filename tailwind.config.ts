@@ -7,6 +7,7 @@ export default {
   	extend: {
         screens: {
             'lg-custom': '990px',
+            'caroussel-lg': '1300px',
         },
   		borderRadius: {
   			lg: 'var(--radius)',

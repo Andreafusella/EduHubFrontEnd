@@ -6,7 +6,7 @@ import { useSettingContext } from '@/context/SettingContext'
 import { useNavigate } from 'react-router-dom'
 import { useGlobalContext } from '@/context/GlobalContext'
 
-function CardAccount({id_account, name, last_name, email, avatar} : ICardAccountProps) {
+function CardAccountCourse({id_account, name, last_name, email, avatar} : ICardAccountProps) {
 
     const {getAvatar} = useSettingContext()
     const {handleDeleteAccount, loading} = useGlobalContext()
@@ -45,7 +45,7 @@ function CardAccount({id_account, name, last_name, email, avatar} : ICardAccount
                         <Pencil></Pencil>
                         Edit
                     </Button>
-                    <Button disabled={loading} className='bg-red-500 hover:bg-red-600' onClick={() => handleDeleteAccount(id_account, false)}>
+                    <Button disabled={loading} className='bg-red-500 hover:bg-red-600' onClick={() => handleDeleteAccount(id_account, true)}>
                         {loading ? (
                             <span className="loading loading-spinner loading-sm"></span>
                         ) : (
@@ -61,4 +61,4 @@ function CardAccount({id_account, name, last_name, email, avatar} : ICardAccount
     )
 }
 
-export default CardAccount
+export default CardAccountCourse

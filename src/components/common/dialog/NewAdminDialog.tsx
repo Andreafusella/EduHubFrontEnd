@@ -8,7 +8,8 @@ import axios from "axios"
 import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { z } from "zod"
-
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const RegisterSchema = z.object({
@@ -35,7 +36,6 @@ type TRegisterSchema = z.infer<typeof RegisterSchema>
 function NewAdministratorDialog({open, handleOpenDialog, role }: {open: boolean, handleOpenDialog: () => void, role: string}) {
 
     const [loading, setLoading] = useState(false)
-    const [success, setSuccess] = useState(false)
     const [selectedAvatar, setSelectedAvatar] = useState<number>(4);
     const {setAdministrator} = useGlobalContext()
 
@@ -66,7 +66,6 @@ function NewAdministratorDialog({open, handleOpenDialog, role }: {open: boolean,
         };
         console.log(formData);
         setLoading(true);
-        setSuccess(false);
         await newUser();
         async function newUser() {
             try {
@@ -75,16 +74,13 @@ function NewAdministratorDialog({open, handleOpenDialog, role }: {open: boolean,
                 console.log(administratorNew);
                 
                 setAdministrator((prev) => [administratorNew, ...prev]);
-                setSuccess(true);
-                // setTimeout(() => {
-                //     handleOpenDialog();
-                // }, 500);
+                toast.success("Administrator created successfully");
                 handleOpenDialog();
             } catch (err) {
                 console.log(err);
             } finally {
                 setLoading(false);
-                setSuccess(false);
+                toast.error("Failed to create administrator");
             }
         }
     }
@@ -190,15 +186,11 @@ function NewAdministratorDialog({open, handleOpenDialog, role }: {open: boolean,
                     <div className="modal-action mt-2">
                         <Button onClick={handleOpenDialog} className="btn bg-gray-500 text-white hover:bg-gray-600" type="button">Chiudi</Button>
                         <Button disabled={isSubmitting} type="submit" className="btn bg-blue-600 text-white hover:bg-blue-700">
-                            {loading ? (
-                                success ? (
-                                    <img src="/public/svg/confirm.svg" className="size-[30px]" />
-                                ) : (
+                            {!loading ? (
                                     <span className="loading loading-spinner loading-sm"></span>
-                                )
-                            ) : (
-                                "Crea"
-                            )}
+                                ) : (
+                                    "Crea"
+                                )}
                         </Button>
                     </div>
                 </form>

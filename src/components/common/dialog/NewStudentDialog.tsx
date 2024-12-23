@@ -8,6 +8,8 @@ import axios from "axios"
 import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { z } from "zod"
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -35,7 +37,6 @@ type TRegisterSchema = z.infer<typeof RegisterSchema>
 function NewStudentDialog({open, handleOpenDialog, role }: {open: boolean, handleOpenDialog: () => void, role: string}) {
 
     const [loading, setLoading] = useState(false)
-    const [success, setSuccess] = useState(false)
     const [selectedAvatar, setSelectedAvatar] = useState<number>(4);
     const {setStudent} = useGlobalContext()
 
@@ -66,7 +67,6 @@ function NewStudentDialog({open, handleOpenDialog, role }: {open: boolean, handl
         };
         console.log(formData);
         setLoading(true);
-        setSuccess(false);
         await newUser();
         async function newUser() {
             try {
@@ -75,16 +75,13 @@ function NewStudentDialog({open, handleOpenDialog, role }: {open: boolean, handl
                 console.log(studentNew);
                 
                 setStudent((prev) => [studentNew, ...prev]);
-                setSuccess(true);
-                // setTimeout(() => {
-                //     handleOpenDialog();
-                // }, 500);
+                toast.success("Student created successfully");
                 handleOpenDialog();
             } catch (err) {
                 console.log(err);
+                toast.error("Failed to create student");
             } finally {
                 setLoading(false);
-                setSuccess(false);
             }
         }
     }
@@ -191,14 +188,10 @@ function NewStudentDialog({open, handleOpenDialog, role }: {open: boolean, handl
                         <Button onClick={handleOpenDialog} className="btn bg-gray-500 text-white hover:bg-gray-600" type="button">Chiudi</Button>
                         <Button disabled={isSubmitting} type="submit" className="btn bg-blue-600 text-white hover:bg-blue-700">
                             {loading ? (
-                                success ? (
-                                    <img src="/public/svg/confirm.svg" className="size-[30px]" />
-                                ) : (
                                     <span className="loading loading-spinner loading-sm"></span>
-                                )
-                            ) : (
-                                "Crea"
-                            )}
+                                ) : (
+                                    "Crea"
+                                )}
                         </Button>
                     </div>
                 </form>

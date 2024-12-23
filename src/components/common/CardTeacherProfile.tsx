@@ -12,8 +12,6 @@ function CardTeacherProfile({id_account, name, lastName, email, avatar, role}: I
 
     const url = getAvatar(avatar)
 
-    console.log(url);
-
     return (
         <div className="bg-slate-50 rounded-xl p-3 shadow-lg">
             <div className="flex justify-center items-center p-10">

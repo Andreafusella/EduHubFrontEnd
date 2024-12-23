@@ -11,7 +11,11 @@ import AllAccount from "./components/pages/administrator/AllAccount"
 import { SettingProvider } from "./context/SettingContext"
 import StudentPage from "./components/pages/administrator/StudentPage"
 import { GlobalProvider } from "./context/GlobalContext"
-import Subject from "./components/pages/administrator/subject"
+import Subject from "./components/pages/administrator/Subject"
+import SubjectInfo from "./components/pages/administrator/SubjectInfo"
+import Course from "./components/pages/administrator/Course"
+import ListStudentCourse from "./components/pages/administrator/ListStudentCourse"
+import AddStudentCourse from "./components/pages/administrator/AddStudentCourse"
 
 
 function App() {
@@ -34,8 +38,13 @@ function App() {
             <Route index element={<AdministratorHome></AdministratorHome>}></Route>
             <Route path="account" element={<AllAccount></AllAccount>}></Route>
             <Route path="student-page" element={<StudentPage></StudentPage>}></Route>
-            <Route path="subject" element={<Subject></Subject>}></Route>
-
+            <Route path="course" element={<Course></Course>}></Route>
+            <Route path="subject" element={<Subject></Subject>}>
+                <Route path="info" element={<SubjectInfo></SubjectInfo>}></Route>
+                <Route path="list-student-course" element={<ListStudentCourse></ListStudentCourse>}>
+                    <Route path="add-student-course" element={<AddStudentCourse></AddStudentCourse>}></Route>
+                </Route>
+            </Route>
           </Route>
         </Route>
         <Route path="*" element={<>Page not found!</>} />

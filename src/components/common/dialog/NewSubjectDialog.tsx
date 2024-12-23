@@ -33,12 +33,14 @@ function NewSubjectDialog({open, handleOpenDialog }: {open: boolean, handleOpenD
         console.log(data);
         setLoading(true);
         setSuccess(false);
-        // await newSubject();
+        await newSubject();
         async function newSubject() {
             try {
-                const res = await axios.post("http://localhost:8000/register", data);
+                const res = await axios.post("http://localhost:8000/subject", data);
                 console.log(res.data);
+                setSubject((prevSubject) => [...prevSubject, res.data]);
                 handleOpenDialog();
+                window.location.reload();
             } catch (err) {
                 console.log(err);
             } finally {

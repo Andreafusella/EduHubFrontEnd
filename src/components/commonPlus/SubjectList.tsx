@@ -3,9 +3,9 @@ import CardSubject from "../common/CardSubject"
 
 function SubjectList({subject, loading}: {subject: ISubjectProps[], loading: boolean}) {
     return (
-        <div className="carousel bg-gray-50 shadow-xl carousel-center flex justify-center rounded-box w-[1000px] space-x-4 p-4">
+        <div className="carousel carousel-center bg-gray-50 shadow-xl rounded-box caroussel-lg:w-[1000px] w-[300px] space-x-4 p-4">
             {loading ? (
-                <div className="flex justify-center items-center gap-5">
+                <div className="flex justify-center items-center gap-5 w-full">
                 <img src="/svg/loading.svg" alt="loading" className="size-[100px]" />
                     <h1 className="text-2xl font-bold">Loading...</h1>
                 </div>

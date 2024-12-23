@@ -1,11 +1,10 @@
-import { ChevronRight, GraduationCap, Settings2, User, ChevronDown, House, BookCopy } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import axios from "axios";
+import { useGlobalContext } from "@/context/GlobalContext";
 import ICourseProps from "@/interface/Course";
 import ISubjectProps from "@/interface/Subject";
-import { useGlobalContext } from "@/context/GlobalContext";
+import axios from "axios";
+import { BookCopy, ChevronDown, ChevronRight, GraduationCap, House, Settings2, User } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function SidebarAdministrator() {
     const [isUserOpen, setIsUserOpen] = useState(false);
@@ -33,9 +32,6 @@ function SidebarAdministrator() {
         fetchSidebar();
     }, []);
 
-    function toggleAccountMenu() {
-        setIsUserOpen(!isUserOpen);
-    }
 
     function toggleCourseMenu() {
         setIsCourseOpen(!isCourseOpen);
@@ -49,7 +45,7 @@ function SidebarAdministrator() {
             </div>
             <hr className="mb-5" />
             <div className="flex flex-col gap-3">
-                <Link to="#" className="hover:bg-slate-200 p-2 rounded-xl transition-all">
+                <Link to="#" className="hover:bg-green-500 hover:text-white hover:font-bold p-2 rounded-xl transition-all">
                     <div className="flex justify-between items-center">
                         <div className="flex gap-2">
                             <House strokeWidth={1.3} />
@@ -58,39 +54,18 @@ function SidebarAdministrator() {
                         <ChevronRight strokeWidth={1} className="size-[20px]" />
                     </div>
                 </Link>
-                <div
-                    className="hover:bg-slate-200 p-2 rounded-xl transition-all cursor-pointer"
-                    onClick={toggleAccountMenu}
-                >
+                
+                <Link to="/administrator-home/account" className="hover:bg-green-500 hover:text-white hover:font-bold p-2 rounded-xl transition-all">
                     <div className="flex justify-between items-center">
                         <div className="flex gap-2">
                             <User strokeWidth={1.3} />
                             <h1 className="font-light">User</h1>
                         </div>
-                        {isUserOpen ? (
-                            <ChevronDown strokeWidth={1} className="size-[20px]" />
-                        ) : (
-                            <ChevronRight strokeWidth={1} className="size-[20px]" />
-                        )}
+                        <div></div>
                     </div>
-                </div>
-                {isUserOpen && (
-                    <div className="flex flex-col gap-1 pl-4">
-                        <Link to="/administrator-home/account" className="hover:bg-slate-200 p-2 rounded-xl transition-all">
-                            Service
-                        </Link>
-                        <Link to="/management" className="hover:bg-slate-200 p-2 rounded-xl transition-all">
-                            Management
-                        </Link>
-                        <Link to="/delete" className="hover:bg-slate-200 p-2 rounded-xl transition-all">
-                            Delete
-                        </Link>
-                    </div>
-                )}
-                <div
-                    className="hover:bg-slate-200 p-2 rounded-xl transition-all cursor-pointer"
-                    onClick={toggleCourseMenu}
-                >
+                </Link>
+                
+                <div className="hover:bg-green-500 hover:text-white hover:font-bold p-2 rounded-xl transition-all cursor-pointer" onClick={toggleCourseMenu}>
                     <div className="flex justify-between items-center">
                         <div className="flex gap-2">
                             <GraduationCap strokeWidth={1.3} />
@@ -106,7 +81,7 @@ function SidebarAdministrator() {
                 {isCourseOpen && (
                     <div className="flex flex-col gap-1 pl-1">
                         {course.map((c) => (
-                            <Link key={c.id_course} to={`/courses/${c.id_course}`} className="hover:bg-slate-200 p-2 rounded-xl transition-all">
+                            <Link key={c.id_course} to={`/administrator-home/course?id_course=${c.id_course}`} className="hover:bg-slate-200 p-2 rounded-xl transition-all">
                                 <div className="flex gap-2 items-center">
                                     <div className="w-10 h-10 p-3 rounded-full bg-green-500 flex items-center justify-center text-white font-bold">
                                         {c.name.charAt(0)}
@@ -117,22 +92,22 @@ function SidebarAdministrator() {
                         ))}
                     </div>
                 )}
-                <Link to="/administrator-home/subject" className="hover:bg-slate-200 p-2 rounded-xl transition-all">
+                <Link to="/administrator-home/subject" className="hover:bg-green-500 hover:text-white hover:font-bold p-2 rounded-xl transition-all">
                     <div className="flex justify-between items-center">
                         <div className="flex gap-2">
                             <BookCopy strokeWidth={1.3} />
                             <h1 className="font-light">Subject</h1>
                         </div>
-                        <ChevronRight strokeWidth={1} className="size-[20px]" />
+                        <div></div>
                     </div>
                 </Link>
-                <Link to="/" className="hover:bg-slate-200 p-2 rounded-xl transition-all">
+                <Link to="/" className="hover:bg-green-500 hover:text-white hover:font-bold p-2 rounded-xl transition-all">
                     <div className="flex justify-between items-center">
                         <div className="flex gap-2">
                             <Settings2 strokeWidth={1.3} />
                             <h1 className="font-light">Settings</h1>
                         </div>
-                        <ChevronRight strokeWidth={1} className="size-[20px]" />
+                        <div></div>
                     </div>
                 </Link>
             </div>
