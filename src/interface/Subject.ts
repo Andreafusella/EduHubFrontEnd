@@ -3,4 +3,6 @@ export default interface ISubjectProps {
     name: string;
     id_teacher: number;
     id_course: number;
+    name_course: string;
+    name_teacher: string;
 }

@@ -5,6 +5,9 @@ export default {
     content: ["./src/**/*.{ts,js,tsx,jsx}", "./index.html"],
   theme: {
   	extend: {
+        screens: {
+            'lg-custom': '990px',
+        },
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

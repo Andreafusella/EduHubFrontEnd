@@ -1,17 +1,38 @@
-import { Outlet } from 'react-router-dom'
-import SidebarAdministrator from '../commonPlus/SidebarAdministrator'
+import { Outlet } from "react-router-dom";
+import SidebarAdministrator from "../commonPlus/SidebarAdministrator";
+import { Menu } from "lucide-react";
 
 function AdministratorLayout() {
-  return (
-    <>
-        <div className='flex '>
-            <SidebarAdministrator></SidebarAdministrator>
-            <div className='flex-1'>
-              <Outlet></Outlet>
+    return (
+        <div className="flex min-h-screen">
+            
+            <div className="hidden lg-custom:block bg-base-200 w-80">
+                <SidebarAdministrator />
+            </div>
+
+            
+            <div className="flex-1 drawer">
+                
+                <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+                <label
+                    htmlFor="my-drawer"
+                    className="btn btn-primary drawer-button lg-custom:hidden absolute top-2 left-2"
+                >
+                    <Menu />
+                </label>
+
+                <div className="drawer-content p-4">
+                    <Outlet />
+                </div>
+
+                
+                <div className="drawer-side lg-custom:hidden">
+                    <label htmlFor="my-drawer" className="drawer-overlay"></label>
+                    <SidebarAdministrator />
+                </div>
             </div>
         </div>
-    </>
-  )
+    );
 }
 
-export default AdministratorLayout
+export default AdministratorLayout;

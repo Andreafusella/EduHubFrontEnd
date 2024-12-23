@@ -96,9 +96,7 @@ function AllAccount() {
                         <span className="text-2xl font-bold">Caricamento...</span>
                     </div>
                 ) : (
-                    
                     <>
-                    
                         {pageAccount == 0 && 
                             <div>
                                 <div className="flex justify-between">
@@ -108,7 +106,7 @@ function AllAccount() {
                                 <AccountList account={student}></AccountList>
                             </div>
                         }
-                        {/* {pageAccount == 1 && <AccountList account={student}></AccountList>} */}
+                        
                         {pageAccount == 1 && 
                             <div>
                                 <div className="flex justify-center items-center my-2 gap-10">

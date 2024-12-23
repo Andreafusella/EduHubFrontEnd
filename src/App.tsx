@@ -11,6 +11,7 @@ import AllAccount from "./components/pages/administrator/AllAccount"
 import { SettingProvider } from "./context/SettingContext"
 import StudentPage from "./components/pages/administrator/StudentPage"
 import { GlobalProvider } from "./context/GlobalContext"
+import Subject from "./components/pages/administrator/subject"
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Route index element={<AdministratorHome></AdministratorHome>}></Route>
             <Route path="account" element={<AllAccount></AllAccount>}></Route>
             <Route path="student-page" element={<StudentPage></StudentPage>}></Route>
+            <Route path="subject" element={<Subject></Subject>}></Route>
 
           </Route>
         </Route>
