@@ -4,12 +4,13 @@ import { Button } from "../ui/button"
 import { Trash } from "lucide-react"
 import { Pencil } from "lucide-react"
 import { Eye } from "lucide-react"
+import IAccountProps from "@/interface/Account"
 
-function CardTeacherProfile(index: {number: number}) {
+function CardTeacherProfile({id_account, name, lastName, email, avatar, role}: IAccountProps) {
 
     const {getAvatar} = useSettingContext()
 
-    const url = getAvatar(index.number)
+    const url = getAvatar(avatar)
 
     console.log(url);
 
@@ -21,12 +22,12 @@ function CardTeacherProfile(index: {number: number}) {
                     <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
             </div>
-            <h1 className="text-center text-xl text-gray-400 font-bold mb-2">Teacher</h1>
+            <h1 className="text-center text-xl text-gray-400 font-bold mb-2">{role}</h1>
             <div className="flex gap-1 justify-center text-lg font-bold">
-                <h1>Andrea</h1>
-                <h1>Fusella</h1>
+                <h1>{name}</h1>
+                <h1>{lastName}</h1>
             </div>
-            <h1 className="text-center text-gray-600">email12@gmail.com</h1>
+            <h1 className="text-center text-gray-600">{email}</h1>
             <div className="m-5 flex justify-center items-center gap-5">
                     <Button className='bg-slate-500 hover:bg-slate-600'>
                         <Eye></Eye>

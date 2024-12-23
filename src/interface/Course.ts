@@ -4,5 +4,4 @@ export default interface ICourseProps {
     description: string;
     dateStart: Date;
     dateFinish: Date;
-    id_teacher: number;
 }

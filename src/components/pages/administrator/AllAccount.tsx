@@ -1,6 +1,9 @@
-import CardTeacherProfile from "@/components/common/CardTeacherProfile"
-import NewAccoutDialog from "@/components/common/dialog/NewAccoutDialog"
+import NewAdministratorDialog from "@/components/common/dialog/NewAdminDialog"
+import NewStudentDialog from "@/components/common/dialog/NewStudentDialog"
+import NewTeacherDialog from "@/components/common/dialog/NewTeahcerDialog"
 import AccountList from "@/components/commonPlus/AccountList"
+import AdminList from "@/components/commonPlus/AdminList"
+import TeacherList from "@/components/commonPlus/TeacherList"
 import { Button } from "@/components/ui/button"
 import { useGlobalContext } from "@/context/GlobalContext"
 import axios from "axios"
@@ -17,7 +20,8 @@ function AllAccount() {
 
     const [loadingList, setLoadingList] = useState(false)
     const [openDialogNewAccount, setOpenDialogNewAccount] = useState(false)
-
+    const [openDialogNewTeacher, setOpenDialogNewTeacher] = useState(false)
+    const [openDialogNewAdministrator, setOpenDialogNewAdministrator] = useState(false)
     useEffect(() => {
         if(!openAllStudent) {
             setLoadingList(true)
@@ -105,16 +109,46 @@ function AllAccount() {
                             </div>
                         }
                         {/* {pageAccount == 1 && <AccountList account={student}></AccountList>} */}
-                        {pageAccount == 1 && <CardTeacherProfile number={1}></CardTeacherProfile>}
-                        {pageAccount == 2 && <AccountList account={administrator}></AccountList>}
+                        {pageAccount == 1 && 
+                            <div>
+                                <div className="flex justify-center items-center my-2 gap-10">
+                                    <h1 className="font-bold text-2xl">Teacher List</h1>
+                                    <Button onClick={() => setOpenDialogNewTeacher(true)} className="bg-green-500 hover:bg-green-600">+</Button>
+                                </div>
+                                <div className="flex justify-center items-center">
+                                    <TeacherList teacher={teacher}></TeacherList>
+                                </div>
+                            </div>
+                        }
+                        {pageAccount == 2 && 
+                            <div>
+                                <div className="flex justify-center items-center my-2 gap-10">
+                                    <h1 className="font-bold text-2xl">Administrator List</h1>
+                                    <Button onClick={() => setOpenDialogNewAdministrator(true)} className="bg-green-500 hover:bg-green-600">+</Button>
+                                </div>
+                                <div className="flex justify-center items-center">
+                                    <AdminList administrator={administrator}></AdminList>
+                                </div>
+                            </div>
+                        }
                     </>
                 )}
             </div>
-            <NewAccoutDialog 
+            <NewStudentDialog 
                 open={openDialogNewAccount} 
                 handleOpenDialog={() => setOpenDialogNewAccount(false)}
                 role="Student"
-            ></NewAccoutDialog>
+            ></NewStudentDialog>
+            <NewTeacherDialog 
+                open={openDialogNewTeacher} 
+                handleOpenDialog={() => setOpenDialogNewTeacher(false)}
+                role="Teacher"
+            ></NewTeacherDialog>
+            <NewAdministratorDialog 
+                open={openDialogNewAdministrator} 
+                handleOpenDialog={() => setOpenDialogNewAdministrator(false)}
+                role="Administrator"
+            ></NewAdministratorDialog>
         </div>
     )
 }

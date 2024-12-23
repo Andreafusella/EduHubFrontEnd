@@ -32,12 +32,12 @@ const RegisterSchema = z.object({
 
 type TRegisterSchema = z.infer<typeof RegisterSchema>
 
-function NewAccoutDialog({open, handleOpenDialog, role }: {open: boolean, handleOpenDialog: () => void, role: string}) {
+function NewTeacherDialog({open, handleOpenDialog, role }: {open: boolean, handleOpenDialog: () => void, role: string}) {
 
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     const [selectedAvatar, setSelectedAvatar] = useState<number>(4);
-    const {setStudent} = useGlobalContext()
+    const {setTeacher} = useGlobalContext()
 
     const {register, handleSubmit, formState: {errors, isSubmitting}} = useForm<TRegisterSchema>({
         resolver: zodResolver(RegisterSchema),
@@ -71,18 +71,20 @@ function NewAccoutDialog({open, handleOpenDialog, role }: {open: boolean, handle
         async function newUser() {
             try {
                 const res = await axios.post("http://localhost:8000/register", formData);
-                const studentNew: IAccountProps = res.data;
-                console.log(studentNew);
+                const teacherNew: IAccountProps = res.data;
+                console.log(teacherNew);
                 
-                setStudent((prev) => [studentNew, ...prev]);
+                setTeacher((prev) => [teacherNew, ...prev]);
                 setSuccess(true);
-                setTimeout(() => {
-                    handleOpenDialog();
-                }, 500);
+                // setTimeout(() => {
+                //     handleOpenDialog();
+                // }, 500);
+                handleOpenDialog();
             } catch (err) {
                 console.log(err);
             } finally {
                 setLoading(false);
+                setSuccess(false);
             }
         }
     }
@@ -91,8 +93,8 @@ function NewAccoutDialog({open, handleOpenDialog, role }: {open: boolean, handle
         <dialog open={open} className="modal rounded-lg shadow-lg">
             <img src="public/png/avatar/student1.png" alt="" className="rounded-t-lg" />
             <div className="modal-box flex flex-col gap-4 bg-white p-6 rounded-lg shadow-md">
-                <h1 className="font-bold text-2xl text-center text-gray-800">Crea un Nuovo Account</h1>
-                <form id="registerForm" className="flex flex-col gap-4" onSubmit={handleSubmit(submiHandler)}>
+                <h1 className="font-bold text-2xl text-center text-gray-800">New Teacher</h1>
+                <form id="registerFormTeacher" className="flex flex-col gap-4" onSubmit={handleSubmit(submiHandler)}>
                     <div className="flex justify-center gap-5">
                         <div className="space-y-4">
                             <div className="flex flex-col gap-1">
@@ -208,4 +210,4 @@ function NewAccoutDialog({open, handleOpenDialog, role }: {open: boolean, handle
     )
 }
 
-export default NewAccoutDialog
+export default NewTeacherDialog

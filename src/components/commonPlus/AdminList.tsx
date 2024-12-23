@@ -1,17 +1,17 @@
 import { Fragment } from "react/jsx-runtime"
-import ITeacherListProps from "@/interface/TeacherList"
 import CardTeacherProfile from "../common/CardTeacherProfile"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { useMediaQuery } from 'react-responsive'
+import IAdminListProps from "@/interface/AdminList";
 
-function TeacherList({teacher} : ITeacherListProps) {
+function AdminList({administrator} : IAdminListProps) {
     const isSmallScreen = useMediaQuery({ query: '(max-width: 768px)' });
 
-    return (teacher.length > 0) ? (
-        (teacher.length > 2 || isSmallScreen) ? (
+    return (administrator.length > 0) ? (
+        (administrator.length > 2 || isSmallScreen) ? (
             <Carousel className="w-full max-w-[350px] rounded-lg shadow-xl">
                 <CarouselContent>
-                    {teacher.map((a) => (
+                    {administrator.map((a) => (
                         <CarouselItem key={a.id_account}>
                             <Fragment>
                                 <CardTeacherProfile
@@ -30,8 +30,8 @@ function TeacherList({teacher} : ITeacherListProps) {
                 <CarouselNext />
             </Carousel>
         ) : (
-            <div className="flex justify-center items-center">
-                {teacher.slice(0, 2).map((a) => (
+            <div className="flex justify-center items-center gap-5">
+                {administrator.slice(0, 2).map((a) => (
                     <CardTeacherProfile
                         key={a.id_account}
                         id_account={a.id_account}
@@ -49,4 +49,4 @@ function TeacherList({teacher} : ITeacherListProps) {
     )
 }
 
-export default TeacherList
+export default AdminList

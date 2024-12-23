@@ -1,43 +1,53 @@
-import { ChevronRight, GraduationCap, Settings2, User, ChevronDown, House } from "lucide-react"
+import { ChevronRight, GraduationCap, Settings2, User, ChevronDown, House, BookOpen, BookCopy } from "lucide-react"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import axios from "axios";
 import ICourseProps from "@/interface/Course";
+import ISubjectProps from "@/interface/Subject";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 
 function SidebarAdministrator() {
     const [isUserOpen, setIsUserOpen] = useState(false)
     const [isCourseOpen, setIsCourseOpen] = useState(false)
-    const [course, setCourse] = useState<ICourseProps[]>([])
-
+    const [isSubjectOpen, setIsSubjectOpen] = useState(false)
+    const {course, setCourse, subject, setSubject} = useGlobalContext()
     useEffect(() => {
-        async function fetchCourse() {
+        async function fetchSidebar() {
             try {
-                const res = await axios.get<ICourseProps[]>("http://localhost:8000/courses");
-                const data = res.data.map((course) => ({
+                const resCourse = await axios.get<ICourseProps[]>("http://localhost:8000/courses");
+                const dataCourse = resCourse.data.map((course) => ({
                     ...course,
                     dateStart: new Date(course.dateStart),
                     dateFinish: new Date(course.dateFinish)
                 }))
-                setCourse(data);
+                setCourse(dataCourse);
+                
+                const resSubject = await axios.get<ISubjectProps[]>("http://localhost:8000/subjects");
+                setSubject(resSubject.data);
+
             } catch (err) {
                 console.log(err);
             }
         }
 
-        fetchCourse()
+        fetchSidebar()
     }, [])
 
     function toggleAccountMenu() {
         setIsUserOpen(!isUserOpen)
     }
+    console.log(course);
+    
 
     function toggleCourseMenu() {
         setIsCourseOpen(!isCourseOpen)
     }
 
-    
+    function toggleSubjectMenu() {
+        setIsSubjectOpen(!isSubjectOpen)
+    }
 
 
     return (
@@ -94,6 +104,29 @@ function SidebarAdministrator() {
                                                 {c.name.charAt(0)}
                                             </div>
                                             {c.name}
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                        )}
+                        <div className="hover:bg-slate-200 p-2 rounded-xl transition-all cursor-pointer" onClick={toggleSubjectMenu}>
+                            <div className="flex justify-between items-center">
+                                <div className="flex gap-2">
+                                    <BookCopy strokeWidth={1.3}></BookCopy>
+                                    <h1 className="font-light">Subject</h1>
+                                </div>
+                                {isSubjectOpen ? <ChevronDown strokeWidth={1} className="size-[20px]"></ChevronDown> : <ChevronRight strokeWidth={1} className="size-[20px]"></ChevronRight>}
+                            </div>                                          
+                        </div>
+                        {isSubjectOpen && (
+                            <div className="flex flex-col gap-1 pl-1">
+                                {subject.map((s) => (
+                                    <Link key={s.id_subject} to={`/subjects/${s.id_subject}`} className="hover:bg-slate-200 p-2 rounded-xl transition-all">
+                                        <div className="flex gap-2 items-center">
+                                            <div className="w-10 h-10 p-3 rounded-full bg-green-500 flex items-center justify-center text-white font-bold">
+                                                {s.name.charAt(0)}
+                                            </div>
+                                            {s.name}
                                         </div>
                                     </Link>
                                 ))}
