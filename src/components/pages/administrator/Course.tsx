@@ -11,7 +11,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 function Course() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
-    const id_course = queryParams.get('id_course');
+    const id_course: number = parseInt(queryParams.get('id_course') || '0', 10);
     const [course, setCourse] = useState<ICourseProps>();
     const [nextLesson, setNextLesson] = useState<ILessonProps[]>([]);
     const [lastLesson, setLastLesson] = useState<ILessonProps[]>([]);
@@ -21,35 +21,42 @@ function Course() {
     const [loadingLastLesson, setLoadingLastLesson] = useState(true);
     const [students, setStudents] = useState<IAccountProps[]>([]);
     const navigate = useNavigate();
+
     useEffect(() => {
-        async function getCourse() {
+        if (id_course) {
+            setNextLesson([]);
+            setLastLesson([]);
             setLoading(true);
             setLoadingNextLesson(true);
             setLoadingLastLesson(true);
-            try {
-                const res = await axios.get(`http://localhost:8000/course-by-id?id_course=${id_course}`);
-                setCourse(res.data);
-                setLoading(false);
-                const resNextLesson = await axios.get(`http://localhost:8000/prev-lesson?id_course=${id_course}&next=true`);
-                setNextLesson(resNextLesson.data);
-                setLoadingNextLesson(false);
-                const resLastLesson = await axios.get(`http://localhost:8000/prev-lesson?id_course=${id_course}&next=false`);
-                setLastLesson(resLastLesson.data);
-                setLoadingLastLesson(false);
+            async function getCourseData() {
+                try {
+                    const res = await axios.get(`http://localhost:8000/course-by-id?id_course=${id_course}`);
+                    setCourse(res.data);
+                    console.log('Course data:', res.data);
+                    
+                    const resLastLesson = await axios.get(`http://localhost:8000/prev-lesson?id_course=${id_course}&next=false`);
+                    setLastLesson(resLastLesson.data);
+                    setLoadingLastLesson(false);
 
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-                setLoadingNextLesson(false);
-                setLoadingLastLesson(false);
+                    const resNextLesson = await axios.get(`http://localhost:8000/prev-lesson?id_course=${id_course}&next=true`);
+                    setNextLesson(resNextLesson.data);
+                    setLoadingNextLesson(false);
+    
+
+                } catch (err) {
+                    console.error(err);
+                    setLoading(false);
+                    setLoadingNextLesson(false);
+                    setLoadingLastLesson(false);
+                }
             }
+    
+            getCourseData();
         }
-        getCourse();
-    }, []);
+    }, [id_course]);
 
 
-    //finire il loading
     return (
         <div>
             <div className="flex gap-2 items-center">
@@ -89,4 +96,4 @@ function Course() {
     )
 }
 
-export default Course
+export default Course;

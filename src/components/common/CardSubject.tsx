@@ -21,7 +21,7 @@ function CardSubject({id_subject, name, id_teacher, id_course, name_course, name
                 <h1 className="text-center text-gray-400 font-bold ">Docente: {name_teacher}</h1>
             </div>
             <div className="flex justify-center items-center gap-2 p-5">
-                <Link to={`/administrator-home/subject/info`}>
+                <Link to={`/administrator-home/subject/info?id_subject=${id_subject}`}>
                     <Button className="bg-green-500 hover:bg-green-600">
                         <Eye></Eye>
                         Show
