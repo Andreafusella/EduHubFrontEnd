@@ -6,10 +6,10 @@ import { useSettingContext } from '@/context/SettingContext'
 import { useNavigate } from 'react-router-dom'
 import { useGlobalContext } from '@/context/GlobalContext'
 
-function CardAccountCourse({id_account, name, last_name, email, avatar} : ICardAccountProps) {
+function CardAccountCourse({ id_account, name, last_name, email, avatar }: ICardAccountProps) {
 
-    const {getAvatar} = useSettingContext()
-    const {handleDeleteAccount, loading} = useGlobalContext()
+    const { getAvatar } = useSettingContext()
+    const { handleDeleteAccount, loading } = useGlobalContext()
 
     const navigate = useNavigate()
 
@@ -24,7 +24,7 @@ function CardAccountCourse({id_account, name, last_name, email, avatar} : ICardA
             <div className="bg-slate-100 p-4 rounded-xl flex items-center justify-between gap-5 w-[650px] my-2">
                 <div className='flex items-center gap-2'>
                     <Avatar>
-                        <AvatarImage src={avatarIndex} className='size-[50px] rounded-xl'/>
+                        <AvatarImage src={avatarIndex} className='size-[50px] rounded-xl' />
                         <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                     <div className='flex flex-col'>
@@ -36,7 +36,7 @@ function CardAccountCourse({id_account, name, last_name, email, avatar} : ICardA
                     </div>
                 </div>
                 <div className='flex gap-3'>
-                    
+
                     <Button onClick={navigateToView} className='bg-slate-500 hover:bg-slate-600'>
                         <Eye></Eye>
                         View

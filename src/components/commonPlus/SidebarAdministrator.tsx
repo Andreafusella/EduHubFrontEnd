@@ -17,8 +17,8 @@ function SidebarAdministrator() {
                 const resCourse = await axios.get<ICourseProps[]>("http://localhost:8000/courses");
                 const dataCourse = resCourse.data.map((course) => ({
                     ...course,
-                    dateStart: new Date(course.dateStart),
-                    dateFinish: new Date(course.dateFinish),
+                    date_start: new Date(course.date_start),
+                    date_finish: new Date(course.date_finish),
                 }));
                 setCourse(dataCourse);
 
@@ -54,7 +54,7 @@ function SidebarAdministrator() {
                         <ChevronRight strokeWidth={1} className="size-[20px]" />
                     </div>
                 </Link>
-                
+
                 <Link to="/administrator-home/account" className="hover:bg-green-500 hover:text-white hover:font-bold p-2 rounded-xl transition-all">
                     <div className="flex justify-between items-center">
                         <div className="flex gap-2">
@@ -64,7 +64,7 @@ function SidebarAdministrator() {
                         <div></div>
                     </div>
                 </Link>
-                
+
                 <div className="hover:bg-green-500 hover:text-white hover:font-bold p-2 rounded-xl transition-all cursor-pointer" onClick={toggleCourseMenu}>
                     <div className="flex justify-between items-center">
                         <div className="flex gap-2">

@@ -11,7 +11,7 @@ import { useEffect, useState } from "react"
 function AllAccount() {
     const [pageAccount, setPageAccount] = useState(0)
 
-    const {student, setStudent, teacher, setTeacher, administrator, setAdministrator} = useGlobalContext()
+    const { student, setStudent, teacher, setTeacher, administrator, setAdministrator } = useGlobalContext()
 
     const [openAllStudent, setopenAllStudent] = useState(false);
     const [openallTeacher, setOpenallTeacher] = useState(false);
@@ -22,17 +22,17 @@ function AllAccount() {
     const [openDialogNewTeacher, setOpenDialogNewTeacher] = useState(false)
     const [openDialogNewAdministrator, setOpenDialogNewAdministrator] = useState(false)
     useEffect(() => {
-        if(!openAllStudent) {
+        if (!openAllStudent) {
             setLoadingList(true)
             async function allStudent() {
-            
+
                 try {
                     const res = await axios.get("http://localhost:8000/get-account-with-email-with-role?role=Student");
                     setStudent(res.data);
                     setopenAllStudent(true);
-                    
+
                 } catch (err) {
-                    
+
                     console.log(err);
                 } finally {
                     setLoadingList(false)
@@ -92,12 +92,12 @@ function AllAccount() {
             <div className="space-y-5">
                 {loadingList ? (
                     <div className="absolute inset-0 flex justify-center items-center">
-                        <img src="/public/svg/loading.svg" alt="Caricamento..." className="size-20 mr-2"/>
+                        <img src="/public/svg/loading.svg" alt="Caricamento..." className="size-20 mr-2" />
                         <span className="text-2xl font-bold">Caricamento...</span>
                     </div>
                 ) : (
                     <>
-                        {pageAccount == 0 && 
+                        {pageAccount == 0 &&
                             <div>
                                 <div className="flex justify-between">
                                     <h1 className="font-bold text-2xl">Student List</h1>
@@ -106,8 +106,8 @@ function AllAccount() {
                                 <AccountList account={student} course={false}></AccountList>
                             </div>
                         }
-                        
-                        {pageAccount == 1 && 
+
+                        {pageAccount == 1 &&
                             <div>
                                 <div className="flex justify-center items-center my-2 gap-10">
                                     <h1 className="font-bold text-2xl">Teacher List</h1>
@@ -118,7 +118,7 @@ function AllAccount() {
                                 </div>
                             </div>
                         }
-                        {pageAccount == 2 && 
+                        {pageAccount == 2 &&
                             <div>
                                 <div className="flex justify-center items-center my-2 gap-10">
                                     <h1 className="font-bold text-2xl">Administrator List</h1>
@@ -132,18 +132,18 @@ function AllAccount() {
                     </>
                 )}
             </div>
-            <NewStudentDialog 
-                open={openDialogNewAccount} 
+            <NewStudentDialog
+                open={openDialogNewAccount}
                 handleOpenDialog={() => setOpenDialogNewAccount(false)}
                 role="Student"
             ></NewStudentDialog>
-            <NewTeacherDialog 
-                open={openDialogNewTeacher} 
+            <NewTeacherDialog
+                open={openDialogNewTeacher}
                 handleOpenDialog={() => setOpenDialogNewTeacher(false)}
                 role="Teacher"
             ></NewTeacherDialog>
-            <NewAdministratorDialog 
-                open={openDialogNewAdministrator} 
+            <NewAdministratorDialog
+                open={openDialogNewAdministrator}
                 handleOpenDialog={() => setOpenDialogNewAdministrator(false)}
                 role="Administrator"
             ></NewAdministratorDialog>

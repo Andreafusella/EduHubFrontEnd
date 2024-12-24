@@ -1,7 +1,9 @@
+import List5Lesson from '@/components/commonPlus/List5Lesson';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import IAccountProps from '@/interface/Account';
 import ICourseProps from '@/interface/Course';
+import ILessonProps from '@/interface/Lesson';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -11,20 +13,36 @@ function Course() {
     const queryParams = new URLSearchParams(location.search);
     const id_course = queryParams.get('id_course');
     const [course, setCourse] = useState<ICourseProps>();
+    const [nextLesson, setNextLesson] = useState<ILessonProps[]>([]);
+    const [lastLesson, setLastLesson] = useState<ILessonProps[]>([]);
+
     const [loading, setLoading] = useState(true);
+    const [loadingNextLesson, setLoadingNextLesson] = useState(true);
+    const [loadingLastLesson, setLoadingLastLesson] = useState(true);
     const [students, setStudents] = useState<IAccountProps[]>([]);
     const navigate = useNavigate();
     useEffect(() => {
         async function getCourse() {
             setLoading(true);
+            setLoadingNextLesson(true);
+            setLoadingLastLesson(true);
             try {
                 const res = await axios.get(`http://localhost:8000/course-by-id?id_course=${id_course}`);
                 setCourse(res.data);
                 setLoading(false);
+                const resNextLesson = await axios.get(`http://localhost:8000/prev-lesson?id_course=${id_course}&next=true`);
+                setNextLesson(resNextLesson.data);
+                setLoadingNextLesson(false);
+                const resLastLesson = await axios.get(`http://localhost:8000/prev-lesson?id_course=${id_course}&next=false`);
+                setLastLesson(resLastLesson.data);
+                setLoadingLastLesson(false);
+
             } catch (err) {
                 console.error(err);
             } finally {
                 setLoading(false);
+                setLoadingNextLesson(false);
+                setLoadingLastLesson(false);
             }
         }
         getCourse();
@@ -60,6 +78,12 @@ function Course() {
                         </Link>
                     ))}
                 </div>
+            </div>
+            <div className='md:m-10 flex md:flex md:flex-row flex-col gap-4 md:justify-between justify-center'>
+                <div></div>
+                <List5Lesson title='Next 5 Lessons' lessons={nextLesson}/>
+                <List5Lesson title='Last 5 Lessons' lessons={lastLesson}/>
+                <div></div>
             </div>
         </div>
     )

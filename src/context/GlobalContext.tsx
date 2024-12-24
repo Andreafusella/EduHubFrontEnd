@@ -2,8 +2,8 @@ import IAccountProps from "@/interface/Account";
 import ICourseProps from "@/interface/Course";
 import ISubjectProps from "@/interface/Subject";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify'; 
-import 'react-toastify/dist/ReactToastify.css'; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
 
 interface IGlobalContextProps {
@@ -79,7 +79,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
             setLoading(false);
         }
     }
-    
+
     return (
         <>
             <ToastContainer />

@@ -11,7 +11,7 @@ function ListStudentCourse() {
     const queryParams = new URLSearchParams(location.search);
     const idCourse = queryParams.get('id_course');
 
-    const {setStudentCourse, studentCourse} = useGlobalContext()
+    const { setStudentCourse, studentCourse } = useGlobalContext()
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
@@ -51,7 +51,7 @@ function ListStudentCourse() {
                     )}
                 </>
             ) : (
-                
+
                 <Outlet />
             )}
         </div>
