@@ -15,6 +15,10 @@ function AddStudentCourse() {
     const [loading, setLoading] = useState<boolean>(false);
     const [searchState, setSearchState] = useState<boolean>(false);
     const [studentSearch, setStudentSearch] = useState<IAccountProps | null>(null);
+
+    const queryParams = new URLSearchParams(location.search);
+    const id_course = queryParams.get('id_course');
+
     useEffect(() => {
         const fetchStudent = async () => {
             const res = await axios.get("http://localhost:8000/get-studentNotInCourse-by-course?id_course=1");
@@ -33,7 +37,7 @@ function AddStudentCourse() {
         
         try {
             const res = await axios.post(`http://localhost:8000/enrolled`, {
-                id_course: 1,
+                id_course: id_course,
                 id_account: selectedStudent,
                 enrollment_date: new Date().toISOString().split('T')[0]
             });

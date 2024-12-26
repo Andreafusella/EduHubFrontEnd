@@ -102,7 +102,7 @@ function NewStudentDialog({open, handleOpenDialog, role }: {open: boolean, handl
                                     name="name"
                                     placeholder="John"
                                     type="text"
-                                    className="h-12 border rounded-lg p-2"    
+                                    className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"    
                                 />
                                 {errors.name && <span className="text-red-500">{errors.name.message}</span>}
                             </div>
@@ -111,11 +111,11 @@ function NewStudentDialog({open, handleOpenDialog, role }: {open: boolean, handl
                                 <h1 className="text-lg font-semibold">Cognome</h1>
                                 <Input
                                     {...register("last_name", {required: true})}
-                                id="last_nameValue"
-                                name="last_name"
-                                placeholder="Doe"
-                                type="text"
-                                className="h-12 border rounded-lg p-2"    
+                                    id="last_nameValue"
+                                    name="last_name"
+                                    placeholder="Doe"
+                                    type="text"
+                                    className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"    
                                 />
                                 {errors.last_name && <span className="text-red-500">{errors.last_name.message}</span>}
                             </div>
@@ -128,7 +128,7 @@ function NewStudentDialog({open, handleOpenDialog, role }: {open: boolean, handl
                                     name="email"
                                     placeholder="john@doe.com"
                                     type="text"
-                                className="h-12 border rounded-lg p-2"    
+                                    className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"    
                                 />
                                 {errors.email && <span className="text-red-500">{errors.email.message}</span>}
                             </div>
@@ -142,7 +142,7 @@ function NewStudentDialog({open, handleOpenDialog, role }: {open: boolean, handl
                                 name="password"
                                 placeholder="********"
                                 type="password"
-                                className="h-12 border rounded-lg p-2"    
+                                className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"    
                                 />
                                 {errors.password && <span className="text-red-500">{errors.password.message}</span>}
                             </div>
@@ -155,7 +155,7 @@ function NewStudentDialog({open, handleOpenDialog, role }: {open: boolean, handl
                                     name="confirmPassword"
                                     placeholder="********"
                                     type="password"
-                                    className="h-12 border rounded-lg p-2"    
+                                    className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"    
                                 />
                                 {errors.confirmPassword && <span className="text-red-500">{errors.confirmPassword.message}</span>}
                             </div>

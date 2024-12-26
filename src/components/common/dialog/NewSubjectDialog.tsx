@@ -67,7 +67,7 @@ function NewSubjectDialog({ open, handleOpenDialog }: { open: boolean, handleOpe
                                     name="name"
                                     placeholder="Base Name"
                                     type="text"
-                                    className="h-12 border rounded-lg p-2"
+                                    className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"
                                 />
                                 {errors.name && <span className="text-red-500">{errors.name.message}</span>}
                             </div>
@@ -78,7 +78,7 @@ function NewSubjectDialog({ open, handleOpenDialog }: { open: boolean, handleOpe
                                     {...register("id_course", { required: true })}
                                     id="id_courseValue"
                                     name="id_course"
-                                    className="h-12 border rounded-lg p-2"
+                                    className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"
                                 >
                                     <option value="" disabled>Select Course</option>
                                     {course.map((courseItem) => (
@@ -96,7 +96,7 @@ function NewSubjectDialog({ open, handleOpenDialog }: { open: boolean, handleOpe
                                     {...register("id_teacher", { required: true })}
                                     id="id_teacherValue"
                                     name="id_teacher"
-                                    className="h-12 border rounded-lg p-2"
+                                    className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"
                                 >
                                     <option value="" disabled>Select Teacher</option>
                                     {teacher.map((teacherItem) => (

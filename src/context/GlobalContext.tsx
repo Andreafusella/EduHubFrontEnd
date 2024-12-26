@@ -57,7 +57,10 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     async function handleDeleteAccount(id_account: number, course: boolean) {
         setLoading(true);
         const confirmDelete = window.confirm("Are you sure you want to delete this account?");
-        if (!confirmDelete) return;
+        if (!confirmDelete) {
+            setLoading(false);
+            return;
+        }
         try {
             const res = await axios.delete(`http://localhost:8000/delete?id_account=${id_account}`);
             if (res.status === 201) {

@@ -38,7 +38,7 @@ function ListStudentCourse() {
                 <>
                     <div className='flex justify-between items-center gap-10'>
                         <h1 className='text-3xl text-gray-500 font-bold'>List Student Course</h1>
-                        <Link to="add-student-course">
+                        <Link to={`add-student-course?id_course=${idCourse}`}>
                             <Button className='bg-green-500 text-white hover:bg-green-600'>+</Button>
                         </Link>
                     </div>

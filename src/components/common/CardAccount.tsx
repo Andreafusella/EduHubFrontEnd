@@ -21,7 +21,7 @@ function CardAccount({ id_account, name, last_name, email, avatar }: ICardAccoun
 
     return (
         <div>
-            <div className="bg-slate-100 p-4 rounded-xl flex items-center justify-between gap-5 w-[650px] my-2">
+            <div className="bg-slate-100 p-4 rounded-xl flex items-center justify-between gap-5 w-[650px] my-3 shadow-md">
                 <div className='flex items-center gap-2'>
                     <Avatar>
                         <AvatarImage src={avatarIndex} className='size-[50px] rounded-xl' />

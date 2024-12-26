@@ -14,9 +14,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const RegisterSchema = z.object({
-    "name": z.string().min(1, {message: "Name must be at least 1 characters"}),
-    "last_name": z.string().min(1, {message: "Last name must be at least 1 characters"}),
-    "email": z.string().email({message: "Invalid email address"}),
+    "name": z.string().min(1, { message: "Name must be at least 1 characters" }),
+    "last_name": z.string().min(1, { message: "Last name must be at least 1 characters" }),
+    "email": z.string().email({ message: "Invalid email address" }),
     "password": z.string()
         .min(5, { message: "Password must be at least 5 characters" })
         .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter" }),
@@ -30,18 +30,18 @@ const RegisterSchema = z.object({
                 path: ["confirmPassword"],
             });
         }
-});
+    });
 
 type TRegisterSchema = z.infer<typeof RegisterSchema>
 
-function NewTeacherDialog({open, handleOpenDialog, role }: {open: boolean, handleOpenDialog: () => void, role: string}) {
+function NewTeacherDialog({ open, handleOpenDialog, role }: { open: boolean, handleOpenDialog: () => void, role: string }) {
 
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     const [selectedAvatar, setSelectedAvatar] = useState<number>(4);
-    const {setTeacher} = useGlobalContext()
+    const { setTeacher } = useGlobalContext()
 
-    const {register, handleSubmit, formState: {errors, isSubmitting}} = useForm<TRegisterSchema>({
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<TRegisterSchema>({
         resolver: zodResolver(RegisterSchema),
         mode: "onSubmit",
     })
@@ -58,7 +58,7 @@ function NewTeacherDialog({open, handleOpenDialog, role }: {open: boolean, handl
         { id: 8, src: "/public/png/avatar/student9.png" },
     ];
 
-    
+
     const submiHandler: SubmitHandler<Omit<TRegisterSchema, "avatar">> = async (data: Omit<TRegisterSchema, "avatar">) => {
         const formData = {
             ...data,
@@ -68,28 +68,28 @@ function NewTeacherDialog({open, handleOpenDialog, role }: {open: boolean, handl
         };
         console.log(formData);
         setLoading(true);
-        
+
         await newUser();
         async function newUser() {
             try {
                 const res = await axios.post("http://localhost:8000/register", formData);
                 const teacherNew: IAccountProps = res.data;
                 console.log(teacherNew);
-                
+
                 setTeacher((prev) => [teacherNew, ...prev]);
                 toast.success("Teacher created successfully");
-                
+
                 handleOpenDialog();
             } catch (err) {
                 console.log(err);
                 toast.error("Failed to create teacher");
             } finally {
                 setLoading(false);
-                
+
             }
         }
     }
-    
+
     return (
         <dialog open={open} className="modal rounded-lg shadow-lg">
             <img src="public/png/avatar/student1.png" alt="" className="rounded-t-lg" />
@@ -101,12 +101,12 @@ function NewTeacherDialog({open, handleOpenDialog, role }: {open: boolean, handl
                             <div className="flex flex-col gap-1">
                                 <h1 className="text-lg font-semibold">Nome</h1>
                                 <Input
-                                    {...register("name", {required: true})}
+                                    {...register("name", { required: true })}
                                     id="nameValue"
                                     name="name"
                                     placeholder="John"
                                     type="text"
-                                    className="h-12 border rounded-lg p-2"    
+                                    className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"
                                 />
                                 {errors.name && <span className="text-red-500">{errors.name.message}</span>}
                             </div>
@@ -114,12 +114,12 @@ function NewTeacherDialog({open, handleOpenDialog, role }: {open: boolean, handl
                             <div className="flex flex-col gap-1">
                                 <h1 className="text-lg font-semibold">Cognome</h1>
                                 <Input
-                                    {...register("last_name", {required: true})}
-                                id="last_nameValue"
-                                name="last_name"
-                                placeholder="Doe"
-                                type="text"
-                                className="h-12 border rounded-lg p-2"    
+                                    {...register("last_name", { required: true })}
+                                    id="last_nameValue"
+                                    name="last_name"
+                                    placeholder="Doe"
+                                    type="text"
+                                    className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"
                                 />
                                 {errors.last_name && <span className="text-red-500">{errors.last_name.message}</span>}
                             </div>
@@ -127,12 +127,12 @@ function NewTeacherDialog({open, handleOpenDialog, role }: {open: boolean, handl
                             <div className="flex flex-col gap-1">
                                 <h1 className="text-lg font-semibold">Email</h1>
                                 <Input
-                                    {...register("email", {required: true})}
+                                    {...register("email", { required: true })}
                                     id="emailValue"
                                     name="email"
                                     placeholder="john@doe.com"
                                     type="text"
-                                className="h-12 border rounded-lg p-2"    
+                                    className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"
                                 />
                                 {errors.email && <span className="text-red-500">{errors.email.message}</span>}
                             </div>
@@ -141,12 +141,12 @@ function NewTeacherDialog({open, handleOpenDialog, role }: {open: boolean, handl
                             <div className="flex flex-col gap-1">
                                 <h1 className="text-lg font-semibold">Password</h1>
                                 <Input
-                                {...register("password", {required: true})}
-                                id="passwordValue"
-                                name="password"
-                                placeholder="********"
-                                type="password"
-                                className="h-12 border rounded-lg p-2"    
+                                    {...register("password", { required: true })}
+                                    id="passwordValue"
+                                    name="password"
+                                    placeholder="********"
+                                    type="password"
+                                    className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"
                                 />
                                 {errors.password && <span className="text-red-500">{errors.password.message}</span>}
                             </div>
@@ -159,7 +159,7 @@ function NewTeacherDialog({open, handleOpenDialog, role }: {open: boolean, handl
                                     name="confirmPassword"
                                     placeholder="********"
                                     type="password"
-                                    className="h-12 border rounded-lg p-2"    
+                                    className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"
                                 />
                                 {errors.confirmPassword && <span className="text-red-500">{errors.confirmPassword.message}</span>}
                             </div>
@@ -170,10 +170,7 @@ function NewTeacherDialog({open, handleOpenDialog, role }: {open: boolean, handl
                         {avatars.map((avatar) => (
                             <label
                                 key={avatar.id}
-                                className={`cursor-pointer ${
-                                    selectedAvatar === avatar.id ? 'border-[3px] border-orange-500 rounded-xl' : ''
-                                }`}
-                            >
+                                className={`cursor-pointer ${selectedAvatar === avatar.id ? 'border-[3px] border-orange-500 rounded-xl' : ''}`}>
                                 <input
                                     type="radio"
                                     value={avatar.id}
@@ -187,15 +184,15 @@ function NewTeacherDialog({open, handleOpenDialog, role }: {open: boolean, handl
                             </label>
                         ))}
                     </div>
-                    
+
                     <div className="modal-action mt-2">
                         <Button onClick={handleOpenDialog} className="btn bg-gray-500 text-white hover:bg-gray-600" type="button">Chiudi</Button>
                         <Button disabled={isSubmitting} type="submit" className="btn bg-blue-600 text-white hover:bg-blue-700">
-                            {!loading ? (
-                                    <span className="loading loading-spinner loading-sm"></span>
-                                ) : (
-                                    "Crea"
-                                )}
+                            {loading ? (
+                                <span className="loading loading-spinner loading-sm"></span>
+                            ) : (
+                                "Crea"
+                            )}
                         </Button>
                     </div>
                 </form>

@@ -34,7 +34,7 @@ function Subject() {
         getSubject();
     }, []);
 
-    // Mostra solo il contenuto principale se non sei in una sottorotta
+    
     const isSubRouteActive = location.pathname !== "/administrator-home/subject";
 
     return (

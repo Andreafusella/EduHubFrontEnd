@@ -12,6 +12,7 @@ function Course() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const id_course: number = parseInt(queryParams.get('id_course') || '0', 10);
+
     const [course, setCourse] = useState<ICourseProps>();
     const [nextLesson, setNextLesson] = useState<ILessonProps[]>([]);
     const [lastLesson, setLastLesson] = useState<ILessonProps[]>([]);
@@ -33,7 +34,6 @@ function Course() {
                 try {
                     const res = await axios.get(`http://localhost:8000/course-by-id?id_course=${id_course}`);
                     setCourse(res.data);
-                    console.log('Course data:', res.data);
                     
                     const resLastLesson = await axios.get(`http://localhost:8000/prev-lesson?id_course=${id_course}&next=false`);
                     setLastLesson(resLastLesson.data);

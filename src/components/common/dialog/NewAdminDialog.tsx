@@ -101,7 +101,7 @@ function NewAdministratorDialog({open, handleOpenDialog, role }: {open: boolean,
                                     name="name"
                                     placeholder="John"
                                     type="text"
-                                    className="h-12 border rounded-lg p-2"    
+                                    className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"    
                                 />
                                 {errors.name && <span className="text-red-500">{errors.name.message}</span>}
                             </div>
@@ -114,7 +114,7 @@ function NewAdministratorDialog({open, handleOpenDialog, role }: {open: boolean,
                                 name="last_name"
                                 placeholder="Doe"
                                 type="text"
-                                className="h-12 border rounded-lg p-2"    
+                                className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"    
                                 />
                                 {errors.last_name && <span className="text-red-500">{errors.last_name.message}</span>}
                             </div>
@@ -127,7 +127,7 @@ function NewAdministratorDialog({open, handleOpenDialog, role }: {open: boolean,
                                     name="email"
                                     placeholder="john@doe.com"
                                     type="text"
-                                className="h-12 border rounded-lg p-2"    
+                                className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"    
                                 />
                                 {errors.email && <span className="text-red-500">{errors.email.message}</span>}
                             </div>
@@ -141,7 +141,7 @@ function NewAdministratorDialog({open, handleOpenDialog, role }: {open: boolean,
                                 name="password"
                                 placeholder="********"
                                 type="password"
-                                className="h-12 border rounded-lg p-2"    
+                                className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"    
                                 />
                                 {errors.password && <span className="text-red-500">{errors.password.message}</span>}
                             </div>
@@ -154,7 +154,7 @@ function NewAdministratorDialog({open, handleOpenDialog, role }: {open: boolean,
                                     name="confirmPassword"
                                     placeholder="********"
                                     type="password"
-                                    className="h-12 border rounded-lg p-2"    
+                                    className="h-12 border-b-2 border-t-0 border-l-0 border-r-0 shadow-md rounded-lg p-2"    
                                 />
                                 {errors.confirmPassword && <span className="text-red-500">{errors.confirmPassword.message}</span>}
                             </div>
@@ -186,7 +186,7 @@ function NewAdministratorDialog({open, handleOpenDialog, role }: {open: boolean,
                     <div className="modal-action mt-2">
                         <Button onClick={handleOpenDialog} className="btn bg-gray-500 text-white hover:bg-gray-600" type="button">Chiudi</Button>
                         <Button disabled={isSubmitting} type="submit" className="btn bg-blue-600 text-white hover:bg-blue-700">
-                            {!loading ? (
+                            {loading ? (
                                     <span className="loading loading-spinner loading-sm"></span>
                                 ) : (
                                     "Crea"
