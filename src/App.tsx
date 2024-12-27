@@ -18,6 +18,8 @@ import ListStudentCourse from "./components/pages/administrator/ListStudentCours
 import AddStudentCourse from "./components/pages/administrator/AddStudentCourse"
 import NewQuiz from "./components/pages/administrator/NewQuiz"
 import NewQuestion from "./components/pages/administrator/NewQuestion"
+import LessonList from "./components/pages/administrator/SubjectLessonList"
+import CourseLessonList from "./components/pages/administrator/CourseLessonList"
 
 
 function App() {
@@ -43,6 +45,8 @@ function App() {
             <Route path="course" element={<Course></Course>}></Route>
             <Route path="subject" element={<Subject></Subject>}>
                 <Route path="info" element={<SubjectInfo></SubjectInfo>}></Route>
+                <Route path="lesson-list" element={<LessonList></LessonList>}></Route>
+                <Route path="course-lesson-list" element={<CourseLessonList></CourseLessonList>}></Route>
                 <Route path="new-quiz" element={<NewQuiz></NewQuiz>}>
                     <Route path="new-question" element={<NewQuestion></NewQuestion>}></Route>
                 </Route>

@@ -32,7 +32,7 @@ function AddStudentCourse() {
     }
 
     const handleAddStudent = async () => {
-        console.log(new Date().toISOString().split('T')[0]);
+        
         setLoading(true);
         
         try {

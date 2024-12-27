@@ -1,9 +1,39 @@
 import ILessonProps from "@/interface/Lesson";
+import { Button } from "../ui/button";
+import { useNavigate } from "react-router-dom";
+import { List, Plus } from "lucide-react";
+import { useState } from "react";
 
-function List5Lesson({ lessons, title, loading }: { lessons: ILessonProps[], title: string, loading: boolean }) {
+function List5Lesson({ lessons, title, loading, id_subject, handleOpenDialog, id_course }: { lessons: ILessonProps[], title: string, loading: boolean, id_subject?: number, handleOpenDialog: () => void, id_course?: number }) {
+    const navigate = useNavigate()
     return (
         <div className="bg-gray-50 p-6 rounded-xl w-[500px] shadow-lg mx-auto">
-            <h1 className="text-xl text-green-600 font-bold mb-4">{title}</h1>
+            <div className="flex justify-between items-center my-2">
+                <h1 className="text-xl text-green-600 font-bold mb-4">{title}</h1>
+                <div className="flex justify-center items-center gap-2">
+                    {id_subject ? (
+                        <Button 
+                        onClick={() => navigate(`/administrator-home/subject/lesson-list?id_subject=${id_subject}`)} 
+                        className={`bg-green-600 text-white px-4 py-2 rounded-md ${lessons.length < 5 ? 'opacity-50 cursor-not-allowed' : ''}`} 
+                        disabled={lessons.length < 5}
+                    >
+                        <List />
+                        </Button>
+                    ) : (
+                        <Button 
+                        onClick={() => navigate(`/administrator-home/subject/course-lesson-list?id_course=${id_course}`)} 
+                        className={`bg-green-600 text-white px-4 py-2 rounded-md ${lessons.length < 5 ? 'opacity-50 cursor-not-allowed' : ''}`} 
+                        disabled={lessons.length < 5}
+                    >
+                        <List />
+                        </Button>
+                    )}
+                    
+                    <Button onClick={handleOpenDialog} className="bg-blue-600 text-white px-4 py-2 rounded-md">
+                        <Plus />
+                    </Button>
+                </div>
+            </div>
             {loading ? (
                 <img src="/public/svg/loading.svg" alt="loading" className="size-20 mx-auto" />
             ) : (

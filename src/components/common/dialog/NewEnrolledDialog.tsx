@@ -64,7 +64,7 @@ const NewEnrolledDialog: React.FC<DialogProps> = ({ courses, accountId, onSubmit
                         {sortedCourses.map((course, index) => (
                             <tr
                                 key={course.id_course}
-                                className={`cursor-pointer hover:bg-green-100 ${selectedCourseId === course.id_course ? 'bg-green-200' : ''} ${index % 2 !== 0 ? 'bg-green-100' : ''}`}
+                                className={`cursor-pointer hover:bg-green-100 ${selectedCourseId === course.id_course ? 'bg-green-300' : ''} ${index % 2 === 0 ? 'bg-green-50' : ''}`}
                                 onClick={() => handleSelectCourse(course.id_course)}
                             >
                                 <td className="py-2 px-4">{course.name}</td>

@@ -5,31 +5,41 @@ import { Menu, X } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
 function NavbarLanding() {
-    const {logOut} = useAuth()
+    const {logOut, role} = useAuth()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const token = localStorage.getItem("token")
+
     return (
-        <nav className="bg-gradient-to-r from-purple-500 to-pink-500 p-4 shadow-lg">
+        <nav className="bg-white p-4 shadow-lg">
           <div className="container mx-auto">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                <img src="../../../public/png/logo.png" alt="Logo" className="size-20" />
-                <span className="text-2xl font-bold text-white">AppName</span>
+                <img src="../../../public/png/logo.png" alt="Logo" className="size-20 filter hue-rotate-360" />
+                <span className="text-2xl font-bold text-white">EduHub</span>
               </div>
               
               {/* Desktop menu */}
               <div className="hidden md:flex space-x-6">
-                <Link to="/" className="text-white">Home</Link>
+                <Link to="/" className="text-gray-700">Home</Link>
                 <Button onClick={logOut}>Logout</Button>
                 {/* <Link to="/" className="text-white">Features</Link> */}
-                <Link to="/" className="text-white">Pricing</Link>
+                <Link to="/" className="text-gray-700">Pricing</Link>
               </div>
               
               <div className="hidden md:flex space-x-2">
-                <Link to="/auth/login">
-                    <Button variant="outline" className="bg-white text-purple-600 hover:bg-purple-100">
-                    Login
-                    </Button>
-                </Link>
+                {token ? (
+                    <Link to={role == "Student" ? "/student-home" : role == "Teacher" ? "/teacher-home" : "/administrator-home"}>
+                        <Button className="bg-green-500 hover:bg-green-600 text-white">
+                        Enter
+                        </Button>
+                    </Link>
+                ) : (
+                    <Link to="/auth/login">
+                        <Button className="bg-green-500 hover:bg-green-600 text-white">
+                        Login
+                        </Button>
+                    </Link>
+                )}
                 
               </div>
               

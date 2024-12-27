@@ -1,19 +1,20 @@
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface IAuthContextProps {
     setAsLogged: (response: {token: string;}, role: string) => void
     logOut: () => void
+    role: "Student" | "Teacher" | "Administrator" | null
+    setRole: (role: "Student" | "Teacher" | "Administrator" | null) => void
 }
 
 const AuthContext = createContext<IAuthContextProps | null>(null);
 
 export const AuthProvider = ({children} : {children: ReactNode}) => {
     const navigate = useNavigate()
-
+    const [role, setRole] = useState<"Student" | "Teacher" | "Administrator" | null>(null);
     const setAsLogged = (response: {token: string}, role: string) => {
         const token = response.token;
-        console.log(token);
         
         
         localStorage.setItem("token", token);
@@ -38,7 +39,9 @@ export const AuthProvider = ({children} : {children: ReactNode}) => {
         <AuthContext.Provider
             value={{
                 setAsLogged,
-                logOut
+                logOut,
+                role,
+                setRole
             }}
         >
         {children}

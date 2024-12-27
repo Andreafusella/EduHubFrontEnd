@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function SidebarAdministrator() {
-    const [isUserOpen, setIsUserOpen] = useState(false);
     const [isCourseOpen, setIsCourseOpen] = useState(false);
     const { course, setCourse, setSubject } = useGlobalContext();
 
@@ -32,86 +31,79 @@ function SidebarAdministrator() {
         fetchSidebar();
     }, []);
 
-
     function toggleCourseMenu() {
         setIsCourseOpen(!isCourseOpen);
     }
 
     return (
-        <div className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-            <div className="flex flex-col items-center gap-1 mb-4">
-                <h1>Logo</h1>
-                <h1>EduHub</h1>
+        <div className="menu bg-white text-gray-700 min-h-full w-80 p-6 shadow-md">
+            {/* Logo Section */}
+            <div className="flex flex-col items-center gap-3 mb-6">
+                <div className="flex items-center gap-2">
+                    <img
+                        src="../../../public/png/logo.png"
+                        alt="Logo"
+                        className="size-16 filter hue-rotate-0"
+                    />
+                    <div className="text-2xl font-bold text-green-600">EduHub</div>
+                </div>
+                
             </div>
-            <hr className="mb-5" />
-            <div className="flex flex-col gap-3">
-                <Link to="#" className="hover:bg-green-500 hover:text-white hover:font-bold p-2 rounded-xl transition-all">
-                    <div className="flex justify-between items-center">
-                        <div className="flex gap-2">
-                            <House strokeWidth={1.3} />
-                            <h1 className="font-light">Home Page</h1>
-                        </div>
-                        <ChevronRight strokeWidth={1} className="size-[20px]" />
-                    </div>
-                </Link>
+            <div className="border-b border-gray-200 mb-6"></div>
 
-                <Link to="/administrator-home/account" className="hover:bg-green-500 hover:text-white hover:font-bold p-2 rounded-xl transition-all">
-                    <div className="flex justify-between items-center">
-                        <div className="flex gap-2">
-                            <User strokeWidth={1.3} />
-                            <h1 className="font-light">User</h1>
-                        </div>
-                        <div></div>
-                    </div>
-                </Link>
+            {/* Menu Items */}
+            <div className="flex flex-col gap-4">
+                <SidebarLink to="#" icon={<House />} label="Home Page" />
+                <SidebarLink to="/administrator-home/account" icon={<User />} label="User" />
 
-                <div className="hover:bg-green-500 hover:text-white hover:font-bold p-2 rounded-xl transition-all cursor-pointer" onClick={toggleCourseMenu}>
-                    <div className="flex justify-between items-center">
-                        <div className="flex gap-2">
-                            <GraduationCap strokeWidth={1.3} />
-                            <h1 className="font-light">Course</h1>
-                        </div>
-                        {isCourseOpen ? (
-                            <ChevronDown strokeWidth={1} className="size-[20px]" />
-                        ) : (
-                            <ChevronRight strokeWidth={1} className="size-[20px]" />
-                        )}
+                {/* Courses Dropdown */}
+                <div
+                    className="hover:bg-gray-100 p-3 rounded-lg cursor-pointer flex justify-between items-center transition-all"
+                    onClick={toggleCourseMenu}
+                >
+                    <div className="flex items-center gap-2">
+                        <GraduationCap className="text-green-600" />
+                        <span className="font-medium">Courses</span>
                     </div>
+                    {isCourseOpen ? (
+                        <ChevronDown className="text-gray-500" />
+                    ) : (
+                        <ChevronRight className="text-gray-500" />
+                    )}
                 </div>
                 {isCourseOpen && (
-                    <div className="flex flex-col gap-1 pl-1">
+                    <div className="flex flex-col gap-2 pl-6">
                         {course.map((c) => (
-                            <Link key={c.id_course} to={`/administrator-home/course?id_course=${c.id_course}`} className="hover:bg-slate-200 p-2 rounded-xl transition-all">
-                                <div className="flex gap-2 items-center">
-                                    <div className="w-10 h-10 p-3 rounded-full bg-green-500 flex items-center justify-center text-white font-bold">
-                                        {c.name.charAt(0)}
-                                    </div>
-                                    {c.name}
+                            <Link
+                                key={c.id_course}
+                                to={`/administrator-home/course?id_course=${c.id_course}`}
+                                className="flex items-center gap-3 p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-all"
+                            >
+                                <div className="w-8 h-8 flex items-center justify-center bg-green-600 text-white rounded-full font-bold shadow">
+                                    {c.name.charAt(0)}
                                 </div>
+                                <span className="font-medium text-gray-700">{c.name}</span>
                             </Link>
                         ))}
                     </div>
                 )}
-                <Link to="/administrator-home/subject" className="hover:bg-green-500 hover:text-white hover:font-bold p-2 rounded-xl transition-all">
-                    <div className="flex justify-between items-center">
-                        <div className="flex gap-2">
-                            <BookCopy strokeWidth={1.3} />
-                            <h1 className="font-light">Subject</h1>
-                        </div>
-                        <div></div>
-                    </div>
-                </Link>
-                <Link to="/" className="hover:bg-green-500 hover:text-white hover:font-bold p-2 rounded-xl transition-all">
-                    <div className="flex justify-between items-center">
-                        <div className="flex gap-2">
-                            <Settings2 strokeWidth={1.3} />
-                            <h1 className="font-light">Settings</h1>
-                        </div>
-                        <div></div>
-                    </div>
-                </Link>
+
+                <SidebarLink to="/administrator-home/subject" icon={<BookCopy />} label="Subject" />
+                <SidebarLink to="/" icon={<Settings2 />} label="Settings" />
             </div>
         </div>
+    );
+}
+
+function SidebarLink({ to, icon, label }: { to: string; icon: JSX.Element; label: string }) {
+    return (
+        <Link
+            to={to}
+            className="flex items-center gap-3 p-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition-all"
+        >
+            <div className="text-xl text-green-600">{icon}</div>
+            <span className="font-medium text-gray-700">{label}</span>
+        </Link>
     );
 }
 

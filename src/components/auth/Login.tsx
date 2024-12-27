@@ -10,8 +10,8 @@ import { CheckCircle, XCircle } from "lucide-react"
 import { useAuth } from "@/context/AuthContext"
 
 const LoginSchema = z.object({
-    email: z.string().email("Email non valida"),
-    password: z.string().min(5, "La password deve avere almeno 5 caratteri").regex(/[A-Z]/, "La password deve avere almeno una lettera maiuscola"),
+    email: z.string().email("Email not valid"),
+    password: z.string().min(5, "The password must have at least 5 characters").regex(/[A-Z]/, "The password must have at least one uppercase letter"),
 })
 
 type LoginFormData = z.infer<typeof LoginSchema>
@@ -23,6 +23,7 @@ function Login() {
     const [error, setError] = useState<"generic" | "credentials" | null>(null);
     const [success, setSuccess] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const {role, setRole} = useAuth()
 
     const {register, handleSubmit, formState: {errors}} = useForm<LoginFormData>({
         resolver: zodResolver(LoginSchema),
@@ -50,7 +51,7 @@ function Login() {
                     setError(null);
                     setSuccess(true);            
                     setAsLogged(data.token, data.role);
-                    
+                    setRole(data.role);
                     
                 } else if (res.status == 401) {
                     const data = await res.json()
@@ -95,19 +96,24 @@ function Login() {
                         className="h-12"
                     />
                     {errors.password && <span className="text-red-500">{errors.password.message}</span>}
-                    <div className="flex gap-3 justify-end mt-5">
-                        <Link to="/">
-                            <Button type="button" className="hover:bg-slate-700">Cancel</Button>
-                        </Link>
-                        <Button disabled={isSubmitting} type="submit" className="bg-blue-600 hover:bg-blue-800">
-                            {isSubmitting ? (
-                                <div className="flex items-center">
-                                    <img src="../../../public/svg/loading.svg" className="size-5"/>
-                                </div>
-                            ) : (
-                                <h1>Login</h1>
-                            )}
-                        </Button>
+                    <div className="flex gap-3 justify-between mt-5">
+                        <div className="flex items-center">
+                            <h1 className="text-blue-600 hover:underline cursor-pointer">Forgot password?</h1>
+                        </div>
+                        <div className="flex gap-3">
+                            <Link to="/">
+                                <Button type="button" className="hover:bg-slate-700">Cancel</Button>
+                            </Link>
+                            <Button disabled={isSubmitting} type="submit" className="bg-blue-600 hover:bg-blue-800">
+                                {isSubmitting ? (
+                                    <div className="flex items-center">
+                                        <img src="../../../public/svg/loading.svg" className="size-5"/>
+                                    </div>
+                                ) : (
+                                    <h1>Login</h1>
+                                )}
+                            </Button>
+                        </div>
                     </div>
                 </form>
                 {error && (
@@ -129,7 +135,7 @@ function Login() {
                         <AlertTitle>Login Successful!</AlertTitle>
                         <AlertDescription>
                             You will be redirected to the home page in 3 seconds or click{" "}
-                            <Link to="/administrator-home" className="underline font-bold">
+                            <Link to={role == "Administrator" ? "/administrator-home" : role == "Teacher" ? "/teacher-home" : "/student-home"} className="underline font-bold">
                                 here
                             </Link>
                         </AlertDescription>

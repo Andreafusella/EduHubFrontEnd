@@ -21,6 +21,7 @@ function Course() {
     const [loadingNextLesson, setLoadingNextLesson] = useState(true);
     const [loadingLastLesson, setLoadingLastLesson] = useState(true);
     const [students, setStudents] = useState<IAccountProps[]>([]);
+    const [open, setOpen] = useState(false)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -56,6 +57,10 @@ function Course() {
         }
     }, [id_course]);
 
+    const handleOpenDialog = () => {
+        setOpen(!open)
+    }
+
 
     return (
         <div>
@@ -88,8 +93,8 @@ function Course() {
             </div>
             <div className='md:m-10 flex md:flex md:flex-row flex-col gap-4 md:justify-between justify-center'>
                 <div></div>
-                <List5Lesson title='Next 5 Lessons' lessons={nextLesson}/>
-                <List5Lesson title='Last 5 Lessons' lessons={lastLesson}/>
+                <List5Lesson handleOpenDialog={handleOpenDialog} loading={loadingNextLesson} title='Next 5 Lessons' lessons={nextLesson} id_course={course?.id_course} />
+                <List5Lesson handleOpenDialog={handleOpenDialog} loading={loadingLastLesson} title='Last 5 Lessons' lessons={lastLesson} id_course={course?.id_course}/>
                 <div></div>
             </div>
         </div>

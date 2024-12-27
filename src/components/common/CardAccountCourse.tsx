@@ -1,16 +1,20 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { Button } from '../ui/button'
-import { Eye, Pencil, Trash } from 'lucide-react'
+import { ClipboardX, Eye, Pencil, Trash } from 'lucide-react'
 import ICardAccountProps from '@/interface/CardAccount'
 import { useSettingContext } from '@/context/SettingContext'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useGlobalContext } from '@/context/GlobalContext'
 
 function CardAccountCourse({ id_account, name, last_name, email, avatar }: ICardAccountProps) {
 
     const { getAvatar } = useSettingContext()
-    const { handleDeleteAccount, loading } = useGlobalContext()
-
+    const { handleDeleteAccount, loading, handleRemoveStudentCourse } = useGlobalContext()
+    const pathname = useLocation().pathname
+    const [searchParams] = useSearchParams();
+    const id_course = searchParams.get("id_course");
+    
+    
     const navigate = useNavigate()
 
     const avatarIndex = getAvatar(avatar);
@@ -41,20 +45,37 @@ function CardAccountCourse({ id_account, name, last_name, email, avatar }: ICard
                         <Eye></Eye>
                         View
                     </Button>
-                    <Button className='bg-blue-500 hover:bg-blue-600'>
-                        <Pencil></Pencil>
-                        Edit
-                    </Button>
-                    <Button disabled={loading} className='bg-red-500 hover:bg-red-600' onClick={() => handleDeleteAccount(id_account, true)}>
-                        {loading ? (
-                            <span className="loading loading-spinner loading-sm"></span>
-                        ) : (
-                            <div className='flex items-center gap-2'>
-                                <Trash></Trash>
-                                <h1 className='hidden md:block'>Delete</h1>
-                            </div>
-                        )}
-                    </Button>
+                    {!pathname.includes("list-student-course") ? (
+                        <Button className='bg-blue-500 hover:bg-blue-600'>
+                            <Pencil></Pencil>
+                            Edit
+                        </Button>
+                    ) : (
+                        <p></p>
+                    )}
+                    {pathname.includes("list-student-course") ? (
+                        <Button disabled={loading} className='bg-red-500 hover:bg-red-600' onClick={() => handleRemoveStudentCourse(Number(id_account), Number(id_course))}>
+                            {loading ? (
+                                <span className="loading loading-spinner loading-sm"></span>
+                            ) : (
+                                <div className='flex items-center gap-2'>
+                                    <ClipboardX></ClipboardX>
+                                    <h1 className='hidden md:block'>Remove</h1>
+                                </div>
+                            )}
+                        </Button>
+                    ) : (
+                        <Button disabled={loading} className='bg-red-500 hover:bg-red-600' onClick={() => handleDeleteAccount(id_account, true)}>
+                            {loading ? (
+                                <span className="loading loading-spinner loading-sm"></span>
+                            ) : (
+                                <div className='flex items-center gap-2'>
+                                    <Trash></Trash>
+                                    <h1 className='hidden md:block'>Delete</h1>
+                                </div>
+                            )}
+                        </Button>
+                    )}
                 </div>
             </div>
         </div>
