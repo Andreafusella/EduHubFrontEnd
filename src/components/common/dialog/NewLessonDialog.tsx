@@ -27,7 +27,10 @@ function NewLessonDialog({ open, handleOpenDialog, id_subject, id_course }: { op
     const { course, subject } = useGlobalContext();
     const [selectedSubject, setSelectedSubject] = useState('');
     const [selectedCourse, setSelectedCourse] = useState('');
+    
+    
     useEffect(() => {
+        
         const subjectItem = subject.find((s) => s.id_subject === id_subject);
         if (subjectItem) {
             setSelectedSubject(subjectItem.name);

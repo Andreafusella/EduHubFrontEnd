@@ -22,6 +22,7 @@ function SubjectInfo() {
     const [loadingPastLesson, setLoadingPastLesson] = useState(false)
     const [loadingQuiz, setLoadingQuiz] = useState(false)
     const [open, setOpen] = useState(false)
+    
     const handleOpenDialog = () => {
         setOpen(!open)
     }

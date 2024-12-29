@@ -48,9 +48,12 @@ function Login() {
     
                 if(res.status == 201) {
                     const data = await res.json()
+                    console.log(data);
+                    
+                    
                     setError(null);
                     setSuccess(true);            
-                    setAsLogged(data.token, data.role);
+                    setAsLogged(data.token, data.role[2], data.role[0]);
                     setRole(data.role);
                     
                 } else if (res.status == 401) {

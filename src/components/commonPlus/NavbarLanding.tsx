@@ -5,10 +5,10 @@ import { Menu, X } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
 function NavbarLanding() {
-    const {logOut, role} = useAuth()
+    const {logOut} = useAuth()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const token = localStorage.getItem("token")
-
+    const role = localStorage.getItem("role")
     return (
         <nav className="bg-white p-4 shadow-lg">
           <div className="container mx-auto">

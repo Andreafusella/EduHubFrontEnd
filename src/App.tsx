@@ -20,6 +20,8 @@ import NewQuiz from "./components/pages/administrator/NewQuiz"
 import NewQuestion from "./components/pages/administrator/NewQuestion"
 import LessonList from "./components/pages/administrator/SubjectLessonList"
 import CourseLessonList from "./components/pages/administrator/CourseLessonList"
+import TeacherLayout from "./components/layout/TeacherLayout"
+import SubjectInfoTeacher from "./components/pages/teacher/SubjectInfoTeacher"
 
 
 function App() {
@@ -53,6 +55,13 @@ function App() {
                 <Route path="list-student-course" element={<ListStudentCourse></ListStudentCourse>}>
                     <Route path="add-student-course" element={<AddStudentCourse></AddStudentCourse>}></Route>
                 </Route>
+            </Route>
+          </Route>
+          <Route path="/teacher-home" element={<TeacherLayout></TeacherLayout>}>
+            <Route index element={<TeacherHome></TeacherHome>}></Route>
+            <Route path="new-quiz" element={<NewQuiz></NewQuiz>}></Route>
+            <Route path="subject-info" element={<SubjectInfoTeacher></SubjectInfoTeacher>}>
+                <Route path="lesson-list" element={<LessonList></LessonList>}></Route>
             </Route>
           </Route>
         </Route>

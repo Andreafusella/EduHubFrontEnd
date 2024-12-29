@@ -2,7 +2,7 @@ import ILessonProps from "@/interface/Lesson";
 import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
 import { List, Plus } from "lucide-react";
-import { useState } from "react";
+
 
 function List5Lesson({ lessons, title, loading, id_subject, handleOpenDialog, id_course }: { lessons: ILessonProps[], title: string, loading: boolean, id_subject?: number, handleOpenDialog: () => void, id_course?: number }) {
     const navigate = useNavigate()
