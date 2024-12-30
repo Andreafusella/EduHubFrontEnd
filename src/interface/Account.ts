@@ -5,4 +5,5 @@ export default interface IAccountProps{
     role: string;
     email: string
     avatar: number
+    presence?: boolean
 }

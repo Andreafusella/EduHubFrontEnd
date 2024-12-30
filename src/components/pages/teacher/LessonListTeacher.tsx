@@ -3,15 +3,16 @@ import ILessonProps from "@/interface/Lesson";
 import { useGlobalContext } from "@/context/GlobalContext";
 import axios from "axios";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
-function LessonList() {
+function LessonListTeacher() {
 
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const id_subject: number = parseInt(queryParams.get('id_subject') || '0', 10);
 
     const { lesson, setLesson } = useGlobalContext();
+    const isSubRouteActive = location.pathname !== "/teacher-home/subject-info/lesson-list/presence";
 
     useEffect(() => {
         try {
@@ -23,15 +24,19 @@ function LessonList() {
         } catch (err) {
             console.error(err);
         }
-    }, [id_subject]);
+    }, []);
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {lesson.map((lesson: ILessonProps) => (
-                <CardLesson key={lesson.id_lesson} lesson={lesson} />
-            ))}
-        </div>
-            
+        <>
+            {isSubRouteActive && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6">
+                    {lesson.map((lesson: ILessonProps) => (
+                        <CardLesson key={lesson.id_lesson} lesson={lesson} />
+                    ))}
+                </div>
+            )}
+            <Outlet />
+        </>
     )
 }
 
-export default LessonList   
+export default LessonListTeacher   

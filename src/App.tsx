@@ -22,6 +22,8 @@ import LessonList from "./components/pages/administrator/SubjectLessonList"
 import CourseLessonList from "./components/pages/administrator/CourseLessonList"
 import TeacherLayout from "./components/layout/TeacherLayout"
 import SubjectInfoTeacher from "./components/pages/teacher/SubjectInfoTeacher"
+import LessonListTeacher from "./components/pages/teacher/LessonListTeacher"
+import Presence from "./components/pages/teacher/Presence"
 
 
 function App() {
@@ -61,7 +63,9 @@ function App() {
             <Route index element={<TeacherHome></TeacherHome>}></Route>
             <Route path="new-quiz" element={<NewQuiz></NewQuiz>}></Route>
             <Route path="subject-info" element={<SubjectInfoTeacher></SubjectInfoTeacher>}>
-                <Route path="lesson-list" element={<LessonList></LessonList>}></Route>
+                <Route path="lesson-list" element={<LessonListTeacher></LessonListTeacher>}>
+                    <Route path="presence" element={<Presence></Presence>}></Route>
+                </Route>
             </Route>
           </Route>
         </Route>

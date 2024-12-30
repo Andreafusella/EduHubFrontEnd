@@ -7,7 +7,7 @@ import ISubjectProps from "@/interface/Subject";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useParams } from "react-router-dom";
-import LessonList from "./LessonList";
+import LessonList from "./LessonListTeacher";
 
 function SubjectInfoTeacher() {
     const location = useLocation();
@@ -60,26 +60,28 @@ function SubjectInfoTeacher() {
         fetchCourse();
     }, [subject?.id_course]);
 
-    const isSubRouteActive = location.pathname !== "/teacher-home/subject-info/lesson-list";
+    const isSubRouteActive = location.pathname === "/teacher-home/subject-info";
     
 
     return (
         <>
-            {isSubRouteActive ? (
-                <div>
-                    <List5LessonTeacher loading={loading} lessons={lessons} handleOpenDialog={handleOpenDialog} id_subject={id_subject} />
-                    {course?.id_course !== undefined && (
-                    <NewLessonDialog
-                        id_subject={id_subject}
-                        id_course={course?.id_course}
-                        open={open}
-                        handleOpenDialog={handleOpenDialog}
-                    />
-            )}
+            <div className="flex flex-col items-center justify-center h-full">
+                {isSubRouteActive ? (
+                    <>
+                        <List5LessonTeacher loading={loading} lessons={lessons} handleOpenDialog={handleOpenDialog} id_subject={id_subject} />
+                        {course?.id_course !== undefined && (
+                        <NewLessonDialog
+                            id_subject={id_subject}
+                            id_course={course?.id_course}
+                            open={open}
+                            handleOpenDialog={handleOpenDialog}
+                        />
+                        )}
+                    </>
+                ) : (
+                    <Outlet />
+                )}
             </div>
-            ) : (
-                <Outlet />
-            )}
         </>
     )
 }

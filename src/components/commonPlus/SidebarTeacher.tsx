@@ -3,7 +3,7 @@ import ISubjectProps from "@/interface/Subject";
 import axios from "axios";
 import { BookCopy, House, ChevronDown, ChevronRight, GraduationCap, Settings2, User, Dices, FileText } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SidebarTeacher() {
     const [isSubjectOpen, setIsSubjectOpen] = useState(false);
@@ -25,6 +25,12 @@ function SidebarTeacher() {
 
         fetchSidebar();
     }, []);
+
+    const navigate = useNavigate();
+
+    function navigateHome() {
+        navigate("/");
+    }
     
     function toggleSubjectMenu() {
         setIsSubjectOpen(!isSubjectOpen);
@@ -33,7 +39,7 @@ function SidebarTeacher() {
         <div className="menu bg-white text-gray-700 min-h-full w-80 p-6 shadow-md">
             {/* Logo Section */}
             <div className="flex flex-col items-center gap-3 mb-6">
-                <div className="flex items-center gap-2">
+                <div onClick={navigateHome} className="flex items-center gap-2 cursor-pointer">
                     <img
                         src="../../../public/png/logo.png"
                         alt="Logo"

@@ -5,7 +5,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-function LessonList() {
+function SubjectLessonList() {
 
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
@@ -33,4 +33,4 @@ function LessonList() {
     )
 }
 
-export default LessonList
+export default SubjectLessonList
