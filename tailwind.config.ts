@@ -80,6 +80,6 @@ export default {
     darkTheme: false, // disabilita il tema dark
   },
   
-  plugins: [require("tailwindcss-animate"), require('daisyui'),],
+  plugins: [require("tailwindcss-animate"), require('daisyui')],
 } satisfies Config
 

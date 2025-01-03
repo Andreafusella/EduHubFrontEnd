@@ -1,6 +1,6 @@
 import ILessonProps from "@/interface/Lesson";
 
-import { List, Plus } from "lucide-react"
+import { List, Plus, Presentation } from "lucide-react"
 import { Button } from "../ui/button"
 import { useNavigate } from "react-router-dom";
 
@@ -8,8 +8,11 @@ function List5LessonTeacher({ loading, lessons, handleOpenDialog, id_subject }: 
     const navigate = useNavigate();
     return (
         <div className="bg-gray-50 p-6 rounded-xl w-[500px] shadow-lg mx-auto">
-            <div className="flex justify-between items-center my-2">
-                <h1 className="text-xl text-green-600 font-bold mb-4">List Lessons</h1>
+            <div className="flex justify-between items-center mb-4">
+                <div className="flex gap-2 items-center">
+                    <h1 className="text-xl text-green-600 font-bold">List Lessons</h1>
+                    <Presentation className="text-green-600" />
+                </div>
                 <div className="flex justify-center items-center gap-2">
                     <Button onClick={() => navigate(`/teacher-home/subject-info/lesson-list?id_subject=${id_subject}`)} className="bg-green-600 text-white px-4 py-2 rounded-md">
                         <List />

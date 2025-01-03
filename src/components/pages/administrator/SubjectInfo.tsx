@@ -59,7 +59,7 @@ function SubjectInfo() {
         <>
             <div className='md:m-10 flex caroussel-lg:flex caroussel-lg:flex-row flex-col gap-4 md:justify-between justify-center'>
                 <div>
-                    <ListQuiz quiz={quiz} id_subject={id_subject} loading={loadingQuiz}/>
+                    <ListQuiz role='administrator' quiz={quiz} id_subject={id_subject} loading={loadingQuiz}/>
                 </div>
                 <div>
                     <ListDocument quiz={quiz} id_subject={id_subject} loading={loadingQuiz}/>

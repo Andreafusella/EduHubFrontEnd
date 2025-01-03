@@ -1,8 +1,8 @@
 import { Fragment } from "react/jsx-runtime"
-import CardTeacherProfile from "../common/CardTeacherProfile"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { useMediaQuery } from 'react-responsive'
 import IAdminListProps from "@/interface/AdminList";
+import CardAdminProfile from "../common/CardAdmin";
 
 function AdminList({administrator} : IAdminListProps) {
     const isSmallScreen = useMediaQuery({ query: '(max-width: 768px)' });
@@ -14,7 +14,7 @@ function AdminList({administrator} : IAdminListProps) {
                     {administrator.map((a) => (
                         <CarouselItem key={a.id_account}>
                             <Fragment>
-                                <CardTeacherProfile
+                                <CardAdminProfile
                                     id_account={a.id_account}
                                     name={a.name}
                                     lastName={a.lastName}
@@ -32,7 +32,7 @@ function AdminList({administrator} : IAdminListProps) {
         ) : (
             <div className="flex justify-center items-center gap-5">
                 {administrator.slice(0, 2).map((a) => (
-                    <CardTeacherProfile
+                    <CardAdminProfile
                         key={a.id_account}
                         id_account={a.id_account}
                         name={a.name}

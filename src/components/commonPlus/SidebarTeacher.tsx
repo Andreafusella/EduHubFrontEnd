@@ -1,15 +1,18 @@
 import { useGlobalContext } from "@/context/GlobalContext";
 import ISubjectProps from "@/interface/Subject";
 import axios from "axios";
-import { BookCopy, House, ChevronDown, ChevronRight, GraduationCap, Settings2, User, Dices, FileText } from "lucide-react";
+import { BookCopy, House, ChevronDown, ChevronRight, Settings2, FileText, LogOut } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Button } from "../ui/button";
+import { useAuth } from "@/context/AuthContext";
 
 function SidebarTeacher() {
     const [isSubjectOpen, setIsSubjectOpen] = useState(false);
     const id = localStorage.getItem("id");
     const {subject, setSubject, setCourse} = useGlobalContext();
-
+    const {logOut} = useAuth();
+    
     useEffect(() => {
         async function fetchSidebar() {
             try {
@@ -53,8 +56,7 @@ function SidebarTeacher() {
 
             {/* Menu Items */}
             <div className="flex flex-col gap-4">
-                <SidebarLink to="/teacher-home" icon={<House />} label="Home Page" />
-                <SidebarLink to="/administrator-home/account" icon={<User />} label="Lessons" />
+                {/* <SidebarLink to="/teacher-home" icon={<House />} label="Home Page" /> */}
 
                 {/* Subject Dropdown */}
                 <div
@@ -88,9 +90,13 @@ function SidebarTeacher() {
                     </div>
                 )}
 
-                <SidebarLink to="/administrator-home/account" icon={<Dices />} label="Quiz" />
-                <SidebarLink to="/administrator-home/account" icon={<FileText />} label="Document" />
-                <SidebarLink to="/" icon={<Settings2 />} label="Settings" />
+                
+                <SidebarLink to="#" icon={<FileText />} label="Document" />
+                <SidebarLink to="#" icon={<Settings2 />} label="Settings" />
+                <Button className="bg-gray-100 hover:bg-gray-200 h-12" onClick={logOut}>
+                    <LogOut className="text-green-600" />
+                    <span className="font-medium text-gray-700">LogOut</span>
+                </Button>
             </div>
         </div>
     )

@@ -61,7 +61,7 @@ function NewQuiz() {
         mode: "onSubmit",
     })
 
-    const isSubRouteActive = location.pathname === "/administrator-home/subject/new-quiz";
+    const isSubRouteActive = location.pathname === "/teacher-home/subject-info/new-quiz";
 
     const onSubmit: SubmitHandler<TNewQuizSchema> = (data) => {
         const dataToSend = {
@@ -69,7 +69,7 @@ function NewQuiz() {
             id_subject: id_subject,
         }
         console.log(dataToSend);
-    
+        
         async function createQuiz() {
             try {
                 setLoading(true);
@@ -78,7 +78,7 @@ function NewQuiz() {
                     toast.success("Quiz created successfully")
                     console.log(res.data)
 
-                    navigate(`/administrator-home/subject/new-quiz/new-question/?id_quiz=${res.data.id_quiz}`)
+                    navigate(`/teacher-home/subject-info/new-quiz/new-question/?id_quiz=${res.data.id_quiz}`)
                     setLoading(false);
                 } else {
                     toast.error("Error creating quiz")

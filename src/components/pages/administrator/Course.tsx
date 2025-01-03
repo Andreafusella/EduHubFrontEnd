@@ -1,9 +1,11 @@
+import NewLessonFromCourseDialog from '@/components/common/dialog/NewLessonFromCourseDialog';
 import List5Lesson from '@/components/commonPlus/List5Lesson';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import IAccountProps from '@/interface/Account';
 import ICourseProps from '@/interface/Course';
 import ILessonProps from '@/interface/Lesson';
+import ISubjectProps from '@/interface/Subject';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -21,6 +23,7 @@ function Course() {
     const [loadingNextLesson, setLoadingNextLesson] = useState(true);
     const [loadingLastLesson, setLoadingLastLesson] = useState(true);
     const [students, setStudents] = useState<IAccountProps[]>([]);
+    const [subject, setSubject] = useState<ISubjectProps[]>([]);
     const [open, setOpen] = useState(false)
     const navigate = useNavigate();
 
@@ -43,8 +46,10 @@ function Course() {
                     const resNextLesson = await axios.get(`http://localhost:8000/prev-lesson?id_course=${id_course}&next=true`);
                     setNextLesson(resNextLesson.data);
                     setLoadingNextLesson(false);
-    
 
+                    const resSubject = await axios.get(`http://localhost:8000/subject-by-course?id_course=${id_course}`);
+                    setSubject(resSubject.data);
+                    
                 } catch (err) {
                     console.error(err);
                     setLoading(false);
@@ -97,6 +102,13 @@ function Course() {
                 <List5Lesson handleOpenDialog={handleOpenDialog} loading={loadingLastLesson} title='Last 5 Lessons' lessons={lastLesson} id_course={course?.id_course}/>
                 <div></div>
             </div>
+            <NewLessonFromCourseDialog
+                subject={subject}
+                open={open}
+                handleOpenDialog={() => setOpen(false)}
+                id_course={course?.id_course}
+                
+            />
         </div>
     )
 }

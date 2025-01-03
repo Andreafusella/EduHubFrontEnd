@@ -24,6 +24,12 @@ import TeacherLayout from "./components/layout/TeacherLayout"
 import SubjectInfoTeacher from "./components/pages/teacher/SubjectInfoTeacher"
 import LessonListTeacher from "./components/pages/teacher/LessonListTeacher"
 import Presence from "./components/pages/teacher/Presence"
+import NewQuizTeacher from "./components/pages/teacher/NewQuizTeacher"
+import StudentLayout from "./components/layout/StudentLayout"
+import { StudentProvider } from "./context/StudentContext"
+import QuizListPage from "./components/pages/student/QuizListPage"
+import QuizQuestion from "./components/pages/student/QuizQuestion"
+import ResultQuizPage from "./components/pages/student/ResultQuizPage"
 
 
 function App() {
@@ -32,6 +38,7 @@ function App() {
     <AuthProvider>
     <SettingProvider>
     <GlobalProvider>
+    <StudentProvider>
       <Routes>
         <Route path="/" element={<LandingLayout></LandingLayout>}>
           <Route index element={<LandingPage></LandingPage>}></Route>
@@ -40,8 +47,6 @@ function App() {
           <Route path="login" element={<Login></Login>}></Route>
         </Route>
         <Route>
-          <Route path="/student-home" element={<StudentHome></StudentHome>}></Route>
-          <Route path="/teacher-home" element={<TeacherHome></TeacherHome>}></Route>
           <Route path="/administrator-home" element={<AdministratorLayout></AdministratorLayout>}>
             <Route index element={<AdministratorHome></AdministratorHome>}></Route>
             <Route path="account" element={<AllAccount></AllAccount>}></Route>
@@ -61,16 +66,26 @@ function App() {
           </Route>
           <Route path="/teacher-home" element={<TeacherLayout></TeacherLayout>}>
             <Route index element={<TeacherHome></TeacherHome>}></Route>
-            <Route path="new-quiz" element={<NewQuiz></NewQuiz>}></Route>
             <Route path="subject-info" element={<SubjectInfoTeacher></SubjectInfoTeacher>}>
+                <Route path="new-quiz" element={<NewQuizTeacher></NewQuizTeacher>}>
+                    <Route path="new-question" element={<NewQuestion></NewQuestion>}></Route>
+                </Route>
                 <Route path="lesson-list" element={<LessonListTeacher></LessonListTeacher>}>
                     <Route path="presence" element={<Presence></Presence>}></Route>
                 </Route>
             </Route>
           </Route>
+          <Route path="/student-home" element={<StudentLayout></StudentLayout>}>
+            <Route index element={<StudentHome></StudentHome>}></Route>
+            <Route path="quiz" element={<QuizListPage></QuizListPage>}>
+                <Route path="question" element={<QuizQuestion></QuizQuestion>}></Route>
+                <Route path="result" element={<ResultQuizPage></ResultQuizPage>}></Route>
+            </Route>
+          </Route>
         </Route>
         <Route path="*" element={<>Page not found!</>} />
       </Routes>
+    </StudentProvider>
     </GlobalProvider>
     </SettingProvider>
     </AuthProvider>

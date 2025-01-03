@@ -14,8 +14,10 @@ function ListDocument({id_subject, loading, document}: {id_subject: number, load
             <div className="flex justify-between items-center my-2">
                 <h1 className="text-xl text-green-600 font-bold">List Documents</h1>
                 {/* modifica url */}
-                <Button onClick={() => navigate(`/administrator-home/subject/new-quiz?id_subject=${id_subject}`)} className="bg-green-600 text-white px-4 py-2 rounded-md"><List/></Button>
-                <Button onClick={() => setOpen(true)}><FilePlus/></Button>
+                <div className="flex gap-2">
+                    <Button onClick={() => navigate(`/administrator-home/subject/new-quiz?id_subject=${id_subject}`)} className="bg-green-600 text-white px-4 py-2 rounded-md"><List/></Button>
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-white" onClick={() => setOpen(true)}><FilePlus/></Button>
+                </div>
             </div>
             {loading ? (
                 <img src="/public/svg/loading.svg" alt="loading" className="size-20 mx-auto" />
