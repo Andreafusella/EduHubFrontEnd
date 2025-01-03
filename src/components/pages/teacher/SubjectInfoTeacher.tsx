@@ -9,7 +9,6 @@ import { Outlet, useLocation } from "react-router-dom";
 import IQuiz from "@/interface/Quiz";
 import ListQuiz from "@/components/commonPlus/ListQuiz";
 import { toast } from "react-toastify";
-import { BookCopy } from "lucide-react";
 import ListDocument from "@/components/commonPlus/List5Document";
 
 function SubjectInfoTeacher() {
@@ -115,11 +114,11 @@ function SubjectInfoTeacher() {
                             </div>
                             {/* Lista Documenti */}
                             <div className="flex flex-wrap md:flex-nowrap flex-col md:flex-row items-center justify-center gap-2">
-                                <ListDocument 
+                                {/* <ListDocument 
                                     quiz={quiz} 
                                     id_subject={id_subject} 
                                     loading={loadingQuiz} 
-                                />
+                                /> */}
                             </div>
                         </div>
     

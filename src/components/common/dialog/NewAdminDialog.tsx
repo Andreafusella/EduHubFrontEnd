@@ -87,7 +87,7 @@ function NewAdministratorDialog({open, handleOpenDialog, role }: {open: boolean,
     
     return (
         <dialog open={open} className="modal rounded-lg shadow-lg">
-            <img src="public/png/avatar/student1.png" alt="" className="rounded-t-lg" />
+            
             <div className="modal-box flex flex-col gap-4 bg-white p-6 rounded-lg shadow-md">
                 <h1 className="font-bold text-2xl text-center text-gray-800">New Administrator</h1>
                 <form id="registerFormAdministrator" className="flex flex-col gap-4" onSubmit={handleSubmit(submiHandler)}>

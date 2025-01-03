@@ -30,6 +30,8 @@ import { StudentProvider } from "./context/StudentContext"
 import QuizListPage from "./components/pages/student/QuizListPage"
 import QuizQuestion from "./components/pages/student/QuizQuestion"
 import ResultQuizPage from "./components/pages/student/ResultQuizPage"
+import PresentListPage from "./components/pages/student/PresentListPage"
+import Calendar from "./components/pages/student/Calendar"
 
 
 function App() {
@@ -48,8 +50,7 @@ function App() {
         </Route>
         <Route>
           <Route path="/administrator-home" element={<AdministratorLayout></AdministratorLayout>}>
-            <Route index element={<AdministratorHome></AdministratorHome>}></Route>
-            <Route path="account" element={<AllAccount></AllAccount>}></Route>
+            <Route index element={<AllAccount></AllAccount>}></Route>
             <Route path="student-page" element={<StudentPage></StudentPage>}></Route>
             <Route path="course" element={<Course></Course>}></Route>
             <Route path="subject" element={<Subject></Subject>}>
@@ -77,10 +78,12 @@ function App() {
           </Route>
           <Route path="/student-home" element={<StudentLayout></StudentLayout>}>
             <Route index element={<StudentHome></StudentHome>}></Route>
+            <Route path="present" element={<PresentListPage></PresentListPage>}></Route>
             <Route path="quiz" element={<QuizListPage></QuizListPage>}>
                 <Route path="question" element={<QuizQuestion></QuizQuestion>}></Route>
                 <Route path="result" element={<ResultQuizPage></ResultQuizPage>}></Route>
             </Route>
+            <Route path="calendar" element={<Calendar></Calendar>}></Route>
           </Route>
         </Route>
         <Route path="*" element={<>Page not found!</>} />

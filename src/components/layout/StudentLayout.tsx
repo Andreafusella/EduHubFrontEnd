@@ -21,7 +21,7 @@ function StudentLayout() {
                     <Menu />
                 </label>
 
-                <div className="drawer-content p-4">
+                <div className="drawer-content p-4 flex items-center justify-center">
                     <Outlet />
                 </div>
 

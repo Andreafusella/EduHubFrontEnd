@@ -44,10 +44,10 @@ function ListQuiz({ id_subject, quiz, loading, role, handleDeleteQuiz, loadingDe
                                 <tr key={q.id_quiz} className="border-b bg-gray-50">
                                     <td className="py-3 text-green-700 font-medium text-center">{q.title}</td>
                                     <td className="text-gray-700 text-center">{q.description}</td>
-                                    <td className="text-gray-700 text-center">{q.date}</td>
+                                    {/* <td className="text-gray-700 text-center">{q.quiz_date}</td> */}
                                     <td className="py-3 text-gray-700 text-center flex gap-2 justify-center">
                                         {/* <Button onClick={() => navigate(`/administrator-home/subject/quiz?id_quiz=${q.id_quiz}`)} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md size-10"><Pencil/></Button> */}
-                                        <Button disabled={loadingDeleteQuiz} onClick={() => handleDeleteQuiz(q.id_quiz)} className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md size-10">
+                                        <Button disabled={loadingDeleteQuiz} onClick={() => handleDeleteQuiz} className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md size-10">
                                             {loadingDeleteQuiz ? (
                                                 <span className="loading loading-spinner loading-lg"></span>
                                             ) : (

@@ -63,7 +63,7 @@ function SidebarAdministrator() {
             {/* Menu Items */}
             <div className="flex flex-col gap-4">
                 {/* <SidebarLink to="/administrator-home" icon={<House />} label="Home Page" /> */}
-                <SidebarLink to="/administrator-home/account" icon={<User />} label="User" />
+                <SidebarLink to="/administrator-home" icon={<User />} label="User" />
 
                 {/* Courses Dropdown */}
                 <div

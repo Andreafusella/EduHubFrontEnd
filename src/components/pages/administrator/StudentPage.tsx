@@ -32,7 +32,7 @@ function StudentPage() {
                 const course = await axios.get(`http://localhost:8000/enrolled?id_account=${id_account}&in_course=${true}`)
                 setCourse(course.data);
 
-                const lesson = await axios.get(`http://localhost:8000/lesson-by-account?id_account=${id_account}`)
+                const lesson = await axios.get(`http://localhost:8000/lesson-by-account?id_account=${id_account}&limit=${true}`)
                 setLesson(lesson.data);
                 setLoadingLesson(false)
             } catch (err) {

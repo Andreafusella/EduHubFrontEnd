@@ -85,8 +85,8 @@ function SidebarStudent() {
                         ))}
                     </div>
                 )}
-                <SidebarLink to="#" icon={<Presentation />} label="Calendar" />
-                <SidebarLink to="#" icon={<TableOfContents />} label="Present" />
+                <SidebarLink to={`/student-home/calendar?id_account=${id}`} icon={<Presentation />} label="Calendar" />
+                <SidebarLink to={`/student-home/present?id_account=${id}`} icon={<TableOfContents />} label="Present" />
                 <SidebarLink to={`/student-home/quiz?id_account=${id}`} icon={< Dices/>} label="Quiz" />
                 <Button className="bg-gray-100 hover:bg-gray-200 h-12" onClick={logOut}>
                     <LogOut className="text-green-600" />
