@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom"
+
+
 function Footer() {
     return (
         <footer className="bg-gray-900">
@@ -14,10 +17,10 @@ function Footer() {
                             <h2 className="mb-6 text-sm font-semibold text-white">Resources</h2>
                             <ul className="text-gray-400 font-medium">
                                 <li className="mb-4">
-                                    <a href="https://flowbite.com/" className="hover:underline">Flowbite</a>
+                                    <Link to="*" className="hover:underline">Flowbite</Link>
                                 </li>
                                 <li>
-                                    <a href="https://tailwindcss.com/" className="hover:underline">Tailwind CSS</a>
+                                    <Link to="*" className="hover:underline">Tailwind CSS</Link>
                                 </li>
                             </ul>
                         </div>
@@ -25,10 +28,10 @@ function Footer() {
                             <h2 className="mb-6 text-sm font-semibold uppercase text-white">Follow us</h2>
                             <ul className="text-gray-400 font-medium">
                                 <li className="mb-4">
-                                    <a href="https://github.com/themesberg/flowbite" className="hover:underline ">Github</a>
+                                    <Link to="*" className="hover:underline">Github</Link>
                                 </li>
                                 <li>
-                                    <a href="https://discord.gg/4eeurUVvTy" className="hover:underline">Discord</a>
+                                    <Link to="*" className="hover:underline">Discord</Link>
                                 </li>
                             </ul>
                         </div>
@@ -36,10 +39,10 @@ function Footer() {
                             <h2 className="mb-6 text-sm font-semibold uppercase text-white">Legal</h2>
                             <ul className="text-gray-400 font-medium">
                                 <li className="mb-4">
-                                    <a href="#" className="hover:underline">Privacy Policy</a>
+                                    <Link to="*" className="hover:underline">Privacy Policy</Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:underline">Terms &amp; Conditions</a>
+                                    <Link to="*" className="hover:underline">Terms &amp; Conditions</Link>
                                 </li>
                             </ul>
                         </div>

@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { TableProperties } from "lucide-react";
 import { Link, useNavigate } from 'react-router-dom';

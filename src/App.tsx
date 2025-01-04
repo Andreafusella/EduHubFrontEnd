@@ -32,6 +32,7 @@ import ResultQuizPage from "./components/pages/student/ResultQuizPage"
 import PresentListPage from "./components/pages/student/PresentListPage"
 import CalendarStudent from "./components/pages/student/CalendarStudent"
 import CalendarTeacher from "./components/pages/teacher/CalendarTeacher"
+import Page404 from "./components/pages/Page404"
 
 function App() {
 
@@ -86,7 +87,7 @@ function App() {
             <Route path="calendar" element={<CalendarStudent></CalendarStudent>}></Route>
           </Route>
         </Route>
-        <Route path="*" element={<>Page not found!</>} />
+        <Route path="*" element={<Page404></Page404>} />
       </Routes>
     </StudentProvider>
     </GlobalProvider>
