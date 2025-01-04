@@ -5,4 +5,7 @@ export default interface ILessonLastStudentProps {
     hour_start: string;   
     hour_end: string;    
     presence: boolean;
+    name_subject?: string;
+    description?: string;
+    classroom?: string;
 }
