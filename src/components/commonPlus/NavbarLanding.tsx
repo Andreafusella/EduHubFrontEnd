@@ -15,7 +15,7 @@ function NavbarLanding() {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <img src="../../../public/png/logo.png" alt="Logo" className="size-20 filter hue-rotate-360" />
-                <span className="text-2xl font-bold text-white">EduHub</span>
+                <span className="text-2xl font-bold text-green-500">EduHub</span>
               </div>
               
               {/* Desktop menu */}

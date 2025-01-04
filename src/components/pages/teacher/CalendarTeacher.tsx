@@ -1,16 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CalendarIcon, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import ILessonLastStudentProps from "@/interface/LessonLastStudent";
 import CardLessonCalendar from "@/components/common/CardLessonCalendar";
+import { useGlobalContext } from "@/context/GlobalContext";
 
-function Calendar() {
+function CalendarTeacher() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const id_account: number = parseInt(queryParams.get('id_account') || '0', 10);
     const [lessons, setLessons] = useState<ILessonLastStudentProps[]>([]);
+
+    const { subject } = useGlobalContext();
+    const [loading, setLoading] = useState(true);
+
+    const id_subject = subject && subject[0] ? subject[0].id_subject : null;
+    
+    useEffect(() => {
+        if (id_subject !== null) {
+            setLoading(false);
+        }
+    }, [id_subject]);
 
     const [selectedDay, setSelectedDay] = useState<string | null>(null); // Giorno selezionato
     const [startOfWeek, setStartOfWeek] = useState<Date>(() => {
@@ -38,13 +50,11 @@ function Calendar() {
         selectedDate.setDate(startOfWeek.getDate() + selectedDayIndex);
 
         const formattedDate = selectedDate.toISOString().split("T")[0];
-        console.log(formattedDate);
-
         setSelectedDay(day);
 
         try {
             async function getLessons() {
-                const response = await axios.get(`http://localhost:8000/lesson-by-account-by-date?date=${formattedDate}&id_account=${id_account}`);
+                const response = await axios.get(`http://localhost:8000/lesson-by-subject-by-date?date=${formattedDate}&id_subject=${id_subject}`);
                 setLessons(response.data);
             }
             getLessons();
@@ -52,6 +62,14 @@ function Calendar() {
             console.error(error);
         }
     };
+
+    if (loading) {
+        return (
+            <div>
+                
+            </div>
+        )
+    }
 
     return (
         <div>
@@ -80,23 +98,22 @@ function Calendar() {
             </div>
             {/* Giorni della settimana */}
             <div className="flex flex-wrap items-center justify-center gap-3 md:w-[700px] w-[300px] p-4 bg-gray-50 rounded-xl shadow-lg mx-auto">
-    {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
-        <Button
-            key={day}
-            onClick={() => handleClick(day)}
-            className={`p-3 w-[70px] text-center rounded-lg shadow-xl transition-transform transform hover:-translate-y-1 
-                ${
-                    selectedDay === day
-                        ? "bg-green-500 text-white font-bold hover:bg-green-600"
-                        : "bg-white text-gray-500 hover:bg-gray-200 hover:font-bold"
-                }`}
-        >
-            {day}
-        </Button>
-    ))}
-</div>
+                {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
+                    <Button
+                        key={day}
+                        onClick={() => handleClick(day)}
+                        className={`p-3 w-[70px] text-center rounded-lg shadow-xl transition-transform transform hover:-translate-y-1 
+                ${selectedDay === day
+                                ? "bg-green-500 text-white font-bold hover:bg-green-600"
+                                : "bg-white text-gray-500 hover:bg-gray-200 hover:font-bold"
+                            }`}
+                    >
+                        {day}
+                    </Button>
+                ))}
+            </div>
             <div className="flex flex-col justify-center items-center mt-10 gap-5">
-                {lessons.length === 0 ? <h1 className="text-2xl font-bold text-gray-500">No lessons Found</h1> : 
+                {lessons.length === 0 ? <h1 className="text-2xl font-bold text-gray-500">No lessons Found</h1> :
                     lessons.map((lesson) => (
                         <CardLessonCalendar lesson={lesson} />
                     ))}
@@ -105,4 +122,4 @@ function Calendar() {
     );
 }
 
-export default Calendar;
+export default CalendarTeacher;

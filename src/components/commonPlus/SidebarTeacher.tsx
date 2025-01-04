@@ -1,7 +1,7 @@
 import { useGlobalContext } from "@/context/GlobalContext";
 import ISubjectProps from "@/interface/Subject";
 import axios from "axios";
-import { BookCopy, House, ChevronDown, ChevronRight, Settings2, FileText, LogOut } from "lucide-react";
+import { BookCopy, House, ChevronDown, ChevronRight, Settings2, FileText, LogOut, CalendarIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
@@ -91,6 +91,7 @@ function SidebarTeacher() {
                 )}
 
                 
+                <SidebarLink to={`/teacher-home/calendar?id_account=${id}`} icon={<CalendarIcon />} label="Calendar" />
                 <SidebarLink to="#" icon={<FileText />} label="Document" />
                 <SidebarLink to="#" icon={<Settings2 />} label="Settings" />
                 <Button className="bg-gray-100 hover:bg-gray-200 h-12" onClick={logOut}>

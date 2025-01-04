@@ -7,6 +7,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import NewLessonDialog from "@/components/common/dialog/NewLessonDialog";
+import { toast } from "react-toastify";
 
 function SubjectInfo() {
 
@@ -21,6 +22,7 @@ function SubjectInfo() {
     const [loadingNextLesson, setLoadingNextLesson] = useState(false)
     const [loadingPastLesson, setLoadingPastLesson] = useState(false)
     const [loadingQuiz, setLoadingQuiz] = useState(false)
+    const [loadingDeleteQuiz, setLoadingDeleteQuiz] = useState(false)
     const [open, setOpen] = useState(false)
     
     const handleOpenDialog = () => {
@@ -55,11 +57,32 @@ function SubjectInfo() {
         }
         fetchGetNextLesson()
     }, [])
+
+    const handleDeleteQuiz = (id_quiz: number) => {
+        try {
+            setLoadingDeleteQuiz(true)
+            async function fetchDeleteQuiz() {
+                const response = await axios.delete(`http://localhost:8000/quiz?id_quiz=${id_quiz}`)
+                if (response.status === 201) {
+                    toast.success('Quiz deleted successfully')
+                    setQuiz(quiz.filter((q) => q.id_quiz !== id_quiz))
+                } else {
+                    toast.error('Error deleting quiz')
+                }
+            }
+            fetchDeleteQuiz()
+        } catch (err) {
+            toast.error('Error deleting quiz')
+            console.log(err)
+        } finally {
+            setLoadingDeleteQuiz(false)
+        }
+    }
     return (
         <>
             <div className='md:m-10 flex caroussel-lg:flex caroussel-lg:flex-row flex-col gap-4 md:justify-between justify-center'>
                 <div>
-                    <ListQuiz role='administrator' quiz={quiz} id_subject={id_subject} loading={loadingQuiz}/>
+                    <ListQuiz loadingDeleteQuiz={loadingDeleteQuiz} handleDeleteQuiz={handleDeleteQuiz} role='administrator' quiz={quiz} id_subject={id_subject} loading={loadingQuiz}/>
                 </div>
                 <div>
                     <ListDocument quiz={quiz} id_subject={id_subject} loading={loadingQuiz}/>

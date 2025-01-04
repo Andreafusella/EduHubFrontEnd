@@ -6,7 +6,6 @@ import Login from "./components/auth/Login"
 import StudentHome from "./components/pages/student/StudentHome"
 import TeacherHome from "./components/pages/teacher/TeacherHome"
 import AdministratorLayout from "./components/layout/AdministratorLayout"
-import AdministratorHome from "./components/pages/administrator/AdministratorHome"
 import AllAccount from "./components/pages/administrator/AllAccount"
 import { SettingProvider } from "./context/SettingContext"
 import StudentPage from "./components/pages/administrator/StudentPage"
@@ -31,8 +30,8 @@ import QuizListPage from "./components/pages/student/QuizListPage"
 import QuizQuestion from "./components/pages/student/QuizQuestion"
 import ResultQuizPage from "./components/pages/student/ResultQuizPage"
 import PresentListPage from "./components/pages/student/PresentListPage"
-import Calendar from "./components/pages/student/Calendar"
-
+import CalendarStudent from "./components/pages/student/CalendarStudent"
+import CalendarTeacher from "./components/pages/teacher/CalendarTeacher"
 
 function App() {
 
@@ -67,6 +66,7 @@ function App() {
           </Route>
           <Route path="/teacher-home" element={<TeacherLayout></TeacherLayout>}>
             <Route index element={<TeacherHome></TeacherHome>}></Route>
+            <Route path="calendar" element={<CalendarTeacher></CalendarTeacher>}></Route>
             <Route path="subject-info" element={<SubjectInfoTeacher></SubjectInfoTeacher>}>
                 <Route path="new-quiz" element={<NewQuizTeacher></NewQuizTeacher>}>
                     <Route path="new-question" element={<NewQuestion></NewQuestion>}></Route>
@@ -83,7 +83,7 @@ function App() {
                 <Route path="question" element={<QuizQuestion></QuizQuestion>}></Route>
                 <Route path="result" element={<ResultQuizPage></ResultQuizPage>}></Route>
             </Route>
-            <Route path="calendar" element={<Calendar></Calendar>}></Route>
+            <Route path="calendar" element={<CalendarStudent></CalendarStudent>}></Route>
           </Route>
         </Route>
         <Route path="*" element={<>Page not found!</>} />

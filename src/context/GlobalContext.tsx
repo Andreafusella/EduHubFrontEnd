@@ -48,7 +48,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         const confirmDelete = window.confirm("Are you sure you want to delete this subject?");
         if (!confirmDelete) return;
         try {
-            const res = await axios.delete(`http://localhost:8000/subject?id_subject=${id_subject}`);
+            const res = await axios.delete(`http://localhost:8000/subject?id_subject=${id_subject}`);            
             if (res.status === 200) {
                 setSubject(subject.filter((subject) => subject.id_subject !== id_subject));
                 toast.success("Subject deleted successfully");
@@ -96,7 +96,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
                 data: {
                     id_account: id_account,
                     id_course: id_course
-                }
+                } 
             });
             if (res.status === 201) {
                 setStudentCourse(studentCourse.filter((student) => student.id_account !== id_account));

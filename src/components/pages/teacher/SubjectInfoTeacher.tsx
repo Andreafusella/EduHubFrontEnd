@@ -9,7 +9,6 @@ import { Outlet, useLocation } from "react-router-dom";
 import IQuiz from "@/interface/Quiz";
 import ListQuiz from "@/components/commonPlus/ListQuiz";
 import { toast } from "react-toastify";
-import ListDocument from "@/components/commonPlus/List5Document";
 
 function SubjectInfoTeacher() {
     const location = useLocation();
