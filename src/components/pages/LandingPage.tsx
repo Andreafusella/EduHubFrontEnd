@@ -96,10 +96,7 @@ function LandingPage() {
                             <h1 className="text-2xl font-semibold text-green-600">Easy-to-Read and Intuitive Table</h1>
                         </div>
                         <p className="text-lg text-gray-500 font-bold">
-                            This table provides a clear, organized view of your lessons and their attendance status.
-                            With easy-to-read color codes and a user-friendly layout, you can quickly understand the details
-                            of each lesson, including the title, date, times, and attendance. The use of vibrant colors helps
-                            differentiate between present and absent students, making it even simpler to track class participation.
+                            In our application, you will find simple and intuitive tables designed for ease of use, featuring family-friendly colors that create a welcoming and user-friendly experience.
                         </p>
                     </div>
                 </div>

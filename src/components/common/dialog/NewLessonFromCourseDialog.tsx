@@ -69,119 +69,117 @@ function NewLessonFromCourseDialog({ open, handleOpenDialog, id_subject, id_cour
     return (
         <dialog open={open} className="modal rounded-lg shadow-2xl transition-transform transform scale-100">
             <div className="modal-box bg-white p-8 rounded-2xl shadow-xl w-96">
-                <h1 className="font-bold text-2xl text-center text-green-600 mb-4">New Lesson</h1>
+                <h1 className="font-bold text-2xl text-center text-gray-700 mb-4">New Lesson</h1>
                 <form id="registerFormLesson" className="flex flex-col gap-4" onSubmit={handleSubmit(submitHandler)}>
                     <div className="space-y-4">
                         {/* Course */}
                         <div className="flex flex-col gap-1">
-                            <h2 className="text-lg font-semibold text-green-600">Course</h2>
+                            <h2 className="text-lg font-semibold text-gray-700">Course</h2>
                             <select
                                 {...register("id_course", { required: true })}
-                                className="h-12 border-b-2 border-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-md rounded-lg px-2"
-                                
+                                className="h-12 border-b-2 border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 shadow-md rounded-lg px-2"
                             >
                                 <option value="" disabled>Select Course</option>
                                 <option value={id_course}>{selectedCourse}</option>
                             </select>
                             {errors.id_course && <span className="text-red-500 text-sm">{errors.id_course.message}</span>}
                         </div>
-
+    
                         {/* Subject */}
                         <div className="flex flex-col gap-1">
-                            <h2 className="text-lg font-semibold text-green-600">Subject</h2>
+                            <h2 className="text-lg font-semibold text-gray-700">Subject</h2>
                             <select
                                 {...register("id_subject", { required: true })}
-                                className="h-12 border-b-2 border-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-md rounded-lg px-2"
-                                
+                                className="h-12 border-b-2 border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 shadow-md rounded-lg px-2"
                             >
-                                <option value="" disabled>
-                                Select Subject
-                                </option>
+                                <option value="" disabled>Select Subject</option>
                                 {subject.map((item) => (
                                     <option key={item.id_subject} value={item.id_subject}>{item.name}</option>
                                 ))}
                             </select>
-                            {errors.id_subject && (
-                                <span className="text-red-500 text-sm">{errors.id_subject.message}</span>
-                            )}
-                            </div>
-
+                            {errors.id_subject && <span className="text-red-500 text-sm">{errors.id_subject.message}</span>}
+                        </div>
+    
                         {/* Title */}
                         <div className="flex flex-col gap-1">
-                            <h2 className="text-lg font-semibold text-green-600">Title</h2>
+                            <h2 className="text-lg font-semibold text-gray-700">Title</h2>
                             <Input
                                 {...register("title", { required: true })}
                                 placeholder="Lesson Title"
-                                className="h-12 border-b-2 border-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-md rounded-lg px-2"
+                                className="h-12 border-b-2 border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 shadow-md rounded-lg px-2"
                             />
                             {errors.title && <span className="text-red-500 text-sm">{errors.title.message}</span>}
                         </div>
-
+    
                         {/* Description */}
                         <div className="flex flex-col gap-1">
-                            <h2 className="text-lg font-semibold text-green-600">Description</h2>
+                            <h2 className="text-lg font-semibold text-gray-700">Description</h2>
                             <Input
                                 {...register("description", { required: true })}
                                 placeholder="Lesson Description"
-                                className="h-12 border-b-2 border-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-md rounded-lg px-2"
+                                className="h-12 border-b-2 border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 shadow-md rounded-lg px-2"
                             />
                             {errors.description && <span className="text-red-500 text-sm">{errors.description.message}</span>}
                         </div>
-
+    
                         {/* Date */}
                         <div className="flex flex-col gap-1">
-                            <h2 className="text-lg font-semibold text-green-600">Lesson Date</h2>
+                            <h2 className="text-lg font-semibold text-gray-700">Lesson Date</h2>
                             <Input
                                 {...register("lesson_date", { required: true })}
                                 type="date"
-                                className="h-12 border-b-2 border-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-md rounded-lg px-2"
+                                className="h-12 border-b-2 border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 shadow-md rounded-lg px-2"
                             />
                             {errors.lesson_date && <span className="text-red-500 text-sm">{errors.lesson_date.message}</span>}
                         </div>
-
+    
                         {/* Start and End Time */}
                         <div className="flex gap-4">
                             <div className="flex flex-col gap-1 w-1/2">
-                                <h2 className="text-lg font-semibold text-green-600">Start Time</h2>
+                                <h2 className="text-lg font-semibold text-gray-700">Start Time</h2>
                                 <Input
                                     {...register("hour_start", { required: true })}
                                     type="time"
-                                    className="h-12 border-b-2 border-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-md rounded-lg px-2"
+                                    className="h-12 border-b-2 border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 shadow-md rounded-lg px-2"
                                 />
                                 {errors.hour_start && <span className="text-red-500 text-sm">{errors.hour_start.message}</span>}
                             </div>
-
+    
                             <div className="flex flex-col gap-1 w-1/2">
-                                <h2 className="text-lg font-semibold text-green-600">End Time</h2>
+                                <h2 className="text-lg font-semibold text-gray-700">End Time</h2>
                                 <Input
                                     {...register("hour_end", { required: true })}
                                     type="time"
-                                    className="h-12 border-b-2 border-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-md rounded-lg px-2"
+                                    className="h-12 border-b-2 border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 shadow-md rounded-lg px-2"
                                 />
                                 {errors.hour_end && <span className="text-red-500 text-sm">{errors.hour_end.message}</span>}
                             </div>
                         </div>
-
+    
                         {/* Classroom */}
                         <div className="flex flex-col gap-1">
-                            <h2 className="text-lg font-semibold text-green-600">Classroom</h2>
+                            <h2 className="text-lg font-semibold text-gray-700">Classroom</h2>
                             <Input
                                 {...register("classroom", { required: true })}
                                 placeholder="Classroom"
-                                className="h-12 border-b-2 border-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-md rounded-lg px-2"
+                                className="h-12 border-b-2 border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 shadow-md rounded-lg px-2"
                             />
                             {errors.classroom && <span className="text-red-500 text-sm">{errors.classroom.message}</span>}
                         </div>
                     </div>
-
+    
                     <div className="modal-action mt-4 flex justify-between">
-                        <Button type="button" onClick={handleOpenDialog} className="bg-gray-500 text-white hover:bg-gray-600 rounded-lg w-24">
+                        <Button
+                            type="button"
+                            onClick={handleOpenDialog}
+                            className="bg-gray-500 text-white hover:bg-gray-600 rounded-lg w-24"
+                        >
                             Close
                         </Button>
                         <Button
                             disabled={isSubmitting}
                             type="submit"
-                            className="bg-green-600 text-white hover:bg-green-700 rounded-lg w-24"
+                            className="bg-blue-600 text-white hover:bg-blue-700 rounded-lg w-24"
                         >
                             {loading ? (
                                 <span className="loading loading-spinner loading-sm"></span>

@@ -20,9 +20,9 @@ function NavbarLanding() {
               
               {/* Desktop menu */}
               <div className="hidden md:flex space-x-6">
-                <Link to="/" className="text-gray-700">Home</Link>
-                <Link to="*" className="text-gray-700">Features</Link>
-                <Link to="*" className="text-gray-700">Pricing</Link>
+                <Link to="/" className="text-gray-700 hover:underline hover:text-green-500">Home</Link>
+                <Link to="*" className="text-gray-700 hover:underline hover:text-green-500">Features</Link>
+                <Link to="*" className="text-gray-700 hover:underline hover:text-green-500">Pricing</Link>
               </div>
               
               <div className="hidden md:flex space-x-2">
@@ -53,9 +53,9 @@ function NavbarLanding() {
             {/* Mobile menu */}
             {isMenuOpen && (
               <div className="mt-4 flex flex-col space-y-4 md:hidden">
-                <Link to="/" className="text-white">Home</Link>
-                <Link to="*" className="text-white">Features</Link>
-                <Link to="*" className="text-white">Pricing</Link>
+                <Link to="/" className="text-white hover:underline hover:text-green-500">Home</Link>
+                <Link to="*" className="text-white hover:underline hover:text-green-500">Features</Link>
+                <Link to="*" className="text-white hover:underline hover:text-green-500">Pricing</Link>
                 <Button variant="outline" className="bg-white text-purple-600 hover:bg-purple-100 w-full">
                   Login
                 </Button>
