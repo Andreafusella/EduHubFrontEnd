@@ -2,16 +2,18 @@ import { useGlobalContext } from "@/context/GlobalContext";
 import ICourseProps from "@/interface/Course";
 import ISubjectProps from "@/interface/Subject";
 import axios from "axios";
-import { BookCopy, ChevronDown, ChevronRight, GraduationCap, House, LogOut, Settings2, User } from "lucide-react";
+import { BookCopy, ChevronDown, ChevronRight, GraduationCap, House, LogOut, Plus, Settings2, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { useAuth } from "@/context/AuthContext";
+import NewCourseDialog from "../common/dialog/NewCourseDialog";
 
 function SidebarAdministrator() {
     const [isCourseOpen, setIsCourseOpen] = useState(false);
     const { course, setCourse, setSubject } = useGlobalContext();
     const {logOut} = useAuth();
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         async function fetchSidebar() {
@@ -27,7 +29,7 @@ function SidebarAdministrator() {
                 const resSubject = await axios.get<ISubjectProps[]>("http://localhost:8000/subjects");
                 setSubject(resSubject.data);
             } catch (err) {
-                console.error(err);
+                
             }
         }
 
@@ -42,6 +44,10 @@ function SidebarAdministrator() {
 
     function navigateHome() {
         navigate("/");
+    }
+
+    function handleOpenDialog() {
+        setOpen(!open);
     }
 
     return (
@@ -62,7 +68,7 @@ function SidebarAdministrator() {
 
             {/* Menu Items */}
             <div className="flex flex-col gap-4">
-                {/* <SidebarLink to="/administrator-home" icon={<House />} label="Home Page" /> */}
+                
                 <SidebarLink to="/administrator-home" icon={<User />} label="User" />
 
                 {/* Courses Dropdown */}
@@ -94,6 +100,10 @@ function SidebarAdministrator() {
                                 <span className="font-medium text-gray-700">{c.name}</span>
                             </Link>
                         ))}
+                        <Button onClick={handleOpenDialog} className="bg-green-600 text-white hover:bg-green-700 w-1/2">
+                            <Plus className="text-white" />
+                            <span className="font-medium text-white">Add Course</span>
+                        </Button>
                     </div>
                 )}
 
@@ -104,6 +114,7 @@ function SidebarAdministrator() {
                     <span className="font-medium text-gray-700">LogOut</span>
                 </Button>
             </div>
+            <NewCourseDialog open={open} handleOpenDialog={handleOpenDialog} />
         </div>
     );
 }

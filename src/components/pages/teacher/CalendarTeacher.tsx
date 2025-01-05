@@ -8,9 +8,6 @@ import CardLessonCalendar from "@/components/common/CardLessonCalendar";
 import { useGlobalContext } from "@/context/GlobalContext";
 
 function CalendarTeacher() {
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const id_account: number = parseInt(queryParams.get('id_account') || '0', 10);
     const [lessons, setLessons] = useState<ILessonLastStudentProps[]>([]);
 
     const { subject } = useGlobalContext();

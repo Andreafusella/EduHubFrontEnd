@@ -91,7 +91,7 @@ function SidebarTeacher() {
                 )}
 
                 
-                <SidebarLink to={`/teacher-home/calendar?id_account=${id}`} icon={<CalendarIcon />} label="Calendar" />
+                <SidebarLink to="/teacher-home" icon={<CalendarIcon />} label="Calendar" />
                 <SidebarLink to="#" icon={<FileText />} label="Document" />
                 <SidebarLink to="#" icon={<Settings2 />} label="Settings" />
                 <Button className="bg-gray-100 hover:bg-gray-200 h-12" onClick={logOut}>

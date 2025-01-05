@@ -10,18 +10,24 @@ function SubjectList({subject, loading}: {subject: ISubjectProps[], loading: boo
                     <h1 className="text-2xl font-bold">Loading...</h1>
                 </div>
             ) : (
-                subject.map((sub) => (
-                    <div className="carousel-item" key={sub.id_subject}>
-                        <CardSubject 
-                        id_subject={sub.id_subject} 
-                        name={sub.name} 
-                        id_teacher={sub.id_teacher} 
+                subject.length === 0 ? (
+                    <div className="flex justify-center items-center gap-5 w-full">
+                        <h1 className="text-2xl font-bold">No subjects found</h1>
+                    </div>
+                ) : (
+                    subject.map((sub) => (
+                        <div className="carousel-item" key={sub.id_subject}>
+                            <CardSubject 
+                            id_subject={sub.id_subject} 
+                            name={sub.name} 
+                            id_teacher={sub.id_teacher} 
                         id_course={sub.id_course} 
                         name_course={sub.name_course}
                         name_teacher={sub.name_teacher}
                     />
-                    </div>
-                ))
+                        </div>
+                    ))
+                )
             )}
         </div>
     )

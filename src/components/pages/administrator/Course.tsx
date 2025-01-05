@@ -28,7 +28,7 @@ function Course() {
     const [subject, setSubject] = useState<ISubjectProps[]>([]);
     const [score, setScore] = useState<IScoreListProps[]>([]);
     const [open, setOpen] = useState(false)
-    const navigate = useNavigate();
+    
 
     useEffect(() => {
         if (id_course) {
@@ -56,7 +56,7 @@ function Course() {
                     const resScore = await axios.get(`http://localhost:8000/score-by-course?id_course=${id_course}`);
                     setScore(resScore.data);
                 } catch (err) {
-                    console.error(err);
+                    
                     setLoading(false);
                     setLoadingNextLesson(false);
                     setLoadingLastLesson(false);
@@ -78,8 +78,10 @@ function Course() {
                 <h1 className='text-3xl text-gray-500 font-bold'>Course:</h1>
                 <h1 className='text-3xl text-gray-500 font-bold'>{course?.name}</h1>
             </div>
-            <ListScore score={score} id_course={id_course}/>
-            <div className='md:m-10 flex md:flex md:flex-row flex-col gap-4 md:justify-between justify-center'>
+            <div className='w-full flex justify-center md:mb-0 mb-10'>
+                <ListScore score={score} id_course={id_course}/>
+            </div>
+            <div className='md:m-10 flex md:flex md:flex-row flex-col md:justify-between justify-center gap-10'>
                 <List5Lesson handleOpenDialog={handleOpenDialog} loading={loadingNextLesson} title='Next 5 Lessons' lessons={nextLesson} id_course={course?.id_course} />
                 <List5Lesson handleOpenDialog={handleOpenDialog} loading={loadingLastLesson} title='Last 5 Lessons' lessons={lastLesson} id_course={course?.id_course}/>
             </div>

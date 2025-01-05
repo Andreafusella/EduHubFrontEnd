@@ -26,7 +26,7 @@ function Subject() {
                 setTeacher(resTeacher.data);
                 setLoading(false);
             } catch (err) {
-                console.error(err);
+                
             } finally {
                 setLoading(false);
             }

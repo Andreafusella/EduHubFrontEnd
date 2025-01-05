@@ -66,8 +66,7 @@ function App() {
             </Route>
           </Route>
           <Route path="/teacher-home" element={<TeacherLayout></TeacherLayout>}>
-            <Route index element={<TeacherHome></TeacherHome>}></Route>
-            <Route path="calendar" element={<CalendarTeacher></CalendarTeacher>}></Route>
+            <Route index element={<CalendarTeacher></CalendarTeacher>}></Route>
             <Route path="subject-info" element={<SubjectInfoTeacher></SubjectInfoTeacher>}>
                 <Route path="new-quiz" element={<NewQuizTeacher></NewQuizTeacher>}>
                     <Route path="new-question" element={<NewQuestion></NewQuestion>}></Route>
