@@ -48,8 +48,6 @@ function Login() {
     
                 if(res.status == 201) {
                     const data = await res.json()
-                    console.log(data);
-                    
                     
                     setError(null);
                     setSuccess(true);            

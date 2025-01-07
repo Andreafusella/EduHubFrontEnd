@@ -51,15 +51,15 @@ function StudentPage() {
 
     return (
         <div className='flex flex-col h-full m-10 items-center justify-center'>
-            <div className='flex gap-5'>
-                <CardAccountProfile name={student?.name || ""} lastName={student?.lastName || ""} email={student?.email || ""} avatar={student?.avatar || 1}></CardAccountProfile>
-                {/* grafico presenze per mese */}
-            </div>
-            <div className='flex gap-5'>
-                <CourseEnrolled course={course} loading={loadingCourse} id_account={id_account} onSubmit={handleEnrollSuccess}></CourseEnrolled>
-                <Last5Lesson loading={loadingLesson} lesson={lesson}></Last5Lesson>
-            </div>
-        </div>
+    <div className='flex flex-wrap gap-5 lg:flex-nowrap lg:flex-row'>
+        <CardAccountProfile name={student?.name || ""} lastName={student?.lastName || ""} email={student?.email || ""} avatar={student?.avatar || 1}></CardAccountProfile>
+        {/* grafico presenze per mese */}
+    </div>
+    <div className='flex flex-wrap gap-5 lg:flex-nowrap lg:flex-row'>
+        <CourseEnrolled course={course} loading={loadingCourse} id_account={id_account} onSubmit={handleEnrollSuccess}></CourseEnrolled>
+        <Last5Lesson loading={loadingLesson} lesson={lesson}></Last5Lesson>
+    </div>
+</div>
 
     )
 }

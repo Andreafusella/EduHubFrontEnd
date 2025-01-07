@@ -27,7 +27,7 @@ function SubjectLessonList() {
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {lesson.map((lesson: ILessonProps) => (
-                <CardLesson key={lesson.id_lesson} lesson={lesson} />
+                <CardLesson teacher={false} key={lesson.id_lesson} lesson={lesson} />
             ))}
         </div>
     )

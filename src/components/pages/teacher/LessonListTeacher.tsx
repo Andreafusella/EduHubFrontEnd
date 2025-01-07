@@ -30,7 +30,7 @@ function LessonListTeacher() {
             {isSubRouteActive && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6">
                     {lesson.map((lesson: ILessonProps) => (
-                        <CardLesson key={lesson.id_lesson} lesson={lesson} />
+                        <CardLesson teacher={true} key={lesson.id_lesson} lesson={lesson} />
                     ))}
                 </div>
             )}

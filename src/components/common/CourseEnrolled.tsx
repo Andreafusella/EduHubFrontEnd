@@ -80,7 +80,7 @@ function CourseEnrolled({ course, loading, id_account, onSubmit }: { course: ICo
     }
 
     return (
-        <div className='p-5 rounded-xl shadow-lg w-[300px]'>
+        <div className='p-5 rounded-xl shadow-lg w-[300px] m-auto'>
             <div className='flex justify-between items-center'>
                 <h1 className='text-lg font-bold'>Courses enrolled</h1>
                 <Button className='bg-green-500 hover:bg-green-600' onClick={() => setOpenModal(true)}>+</Button>

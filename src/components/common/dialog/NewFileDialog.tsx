@@ -1,3 +1,5 @@
+import { Input } from '@/components/ui/input';
+import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -10,8 +12,10 @@ interface NewFileDialogProps {
 const NewFileDialog: React.FC<NewFileDialogProps> = ({ open, onClose, id_subject }) => {
     const dialogRef = useRef<HTMLDivElement>(null);
     const [filePreview, setFilePreview] = useState<string | null>(null);
-    const [file, setFile] = useState<File | null>(null);
+    const [fileDialog, setFileDialog] = useState<File | null>(null);
     const [isUploading, setIsUploading] = useState(false);
+    const [name, setName] = useState<string>('');
+    const [description, setDescription] = useState<string>('');
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files?.[0];
@@ -21,8 +25,7 @@ const NewFileDialog: React.FC<NewFileDialogProps> = ({ open, onClose, id_subject
                 setFilePreview(reader.result as string);
             };
             reader.readAsDataURL(selectedFile);
-            setFile(selectedFile);
-            console.log(selectedFile);
+            setFileDialog(selectedFile);
         }
     };
 
@@ -42,26 +45,26 @@ const NewFileDialog: React.FC<NewFileDialogProps> = ({ open, onClose, id_subject
                 setFilePreview(reader.result as string);
             };
             reader.readAsDataURL(selectedFile);
-            setFile(selectedFile);
+            setFileDialog(selectedFile);
         }
     };
 
     const handleUpload = async () => {
-        if (!file) return;
+        if (!fileDialog) return;
         setIsUploading(true);
 
         const formData = new FormData();
-        formData.append('file', file);
+        formData.append('file', fileDialog);
         formData.append('id_subject', id_subject.toString());
+        formData.append('name', name);
+        formData.append('description', description);
         console.log(formData);
         try {
-            const response = await fetch('/api/upload', {
-                method: 'POST',
-                body: formData,
-            });
+            const response = await axios.post('http://localhost:8000/upload', formData);
 
-            if (response.ok) {
+            if (response.status === 200) {
                 toast.success('File uploaded successfully!');
+                window.location.reload();
                 onClose();
             } else {
                 toast.error('Error uploading file');
@@ -76,7 +79,7 @@ const NewFileDialog: React.FC<NewFileDialogProps> = ({ open, onClose, id_subject
 
     useEffect(() => {
         if (!open) {
-            setFile(null);
+            setFileDialog(null);
             setFilePreview(null);
         }
     }, [open]);
@@ -108,11 +111,25 @@ const NewFileDialog: React.FC<NewFileDialogProps> = ({ open, onClose, id_subject
                     <h2 className="text-2xl font-semibold text-green-500">Upload a File</h2>
                     <button onClick={onClose} className="text-gray-500 hover:text-gray-700">&times;</button>
                 </div>
+                <div className='flex flex-col gap-2 mt-5'>
+                <Input 
+                    placeholder='Name' 
+                    value={name}
+                    onChange={(e) => setName(e.target.value)} 
+                />
+
+                <Input 
+                    placeholder='Description' 
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)} 
+                />
+                </div>
                 <div
                     className="flex items-center justify-center w-full mt-6"
                     onDragOver={(event: React.DragEvent<HTMLDivElement>) => handleDragOver(event)}
                     onDrop={(event: React.DragEvent<HTMLDivElement>) => handleDrop(event)}
                 >
+                    
                     <label
                         htmlFor="dropzone-file"
                         className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
@@ -144,6 +161,7 @@ const NewFileDialog: React.FC<NewFileDialogProps> = ({ open, onClose, id_subject
                             className="hidden"
                             onChange={handleFileChange}
                         />
+                        
                     </label>
                 </div>
 
@@ -164,8 +182,8 @@ const NewFileDialog: React.FC<NewFileDialogProps> = ({ open, onClose, id_subject
                 <div className="flex justify-between items-center mt-4">
                     <button
                         onClick={handleUpload}
-                        disabled={!file || isUploading}
-                        className={`w-full py-2 px-4 rounded-lg ${!file ? 'bg-gray-300' : 'bg-green-600'} text-white`}
+                        disabled={!fileDialog || isUploading}
+                        className={`w-full py-2 px-4 rounded-lg ${!fileDialog ? 'bg-gray-300' : 'bg-green-600'} text-white`}
                     >
                         {isUploading ? 'Uploading...' : 'Upload File'}
                     </button>

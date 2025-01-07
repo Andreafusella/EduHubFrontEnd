@@ -34,6 +34,8 @@ function Course() {
         if (id_course) {
             setNextLesson([]);
             setLastLesson([]);
+            setSubject([])
+            setScore([])
             setLoading(true);
             setLoadingNextLesson(true);
             setLoadingLastLesson(true);

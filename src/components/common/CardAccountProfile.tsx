@@ -8,7 +8,7 @@ function CardAccountProfile({name, lastName, email, avatar} : CardAccountProfile
 
     const urlAvatar: string = getAvatar(avatar || 1);
     return (
-        <div className="rounded-xl shadow-lg w-[350px] bg-green-500">
+        <div className="rounded-xl shadow-lg w-[350px] h-[380px] bg-green-500 m-auto">
             
             <div className="p-10">
                 <Avatar className="h-full w-full flex justify-center items-center">

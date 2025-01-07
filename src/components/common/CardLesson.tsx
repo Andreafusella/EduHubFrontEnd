@@ -4,12 +4,12 @@ import { Button } from "../ui/button";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 
-function CardLesson({ lesson }: { lesson: ILessonProps }) {
+function CardLesson({ lesson, teacher }: { lesson: ILessonProps, teacher: boolean }) {
     const { handleDeleteLesson } = useGlobalContext();
     const navigate = useNavigate();
 
     return (
-        <div onClick={() => navigate(`/teacher-home/subject-info/lesson-list/presence?id_lesson=${lesson.id_lesson}`)} className="bg-white shadow-lg rounded-xl p-6 border-t-4 border-green-500 hover:shadow-2xl transition-shadow duration-300 w-[300px] cursor-pointer">
+        <div onClick={() => teacher ? navigate(`/teacher-home/subject-info/lesson-list/presence?id_lesson=${lesson.id_lesson}`) : ""} className="bg-white shadow-lg rounded-xl p-6 border-t-4 border-green-500 hover:shadow-2xl transition-shadow duration-300 w-[300px] cursor-pointer">
             <div className="items-center mb-4">
                 <h1 className="text-xl font-semibold text-gray-800 text-center">{lesson.lesson_date}</h1>
             </div>

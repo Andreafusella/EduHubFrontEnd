@@ -78,9 +78,9 @@ function NewAdministratorDialog({open, handleOpenDialog, role }: {open: boolean,
                 handleOpenDialog();
             } catch (err) {
                 console.log(err);
+                toast.error("Failed to create administrator");
             } finally {
                 setLoading(false);
-                toast.error("Failed to create administrator");
             }
         }
     }

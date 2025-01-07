@@ -33,7 +33,7 @@ import PresentListPage from "./components/pages/student/PresentListPage"
 import CalendarStudent from "./components/pages/student/CalendarStudent"
 import CalendarTeacher from "./components/pages/teacher/CalendarTeacher"
 import Page404 from "./components/pages/Page404"
-
+import Document from "./components/pages/student/Document"
 function App() {
 
   return (
@@ -79,6 +79,7 @@ function App() {
           <Route path="/student-home" element={<StudentLayout></StudentLayout>}>
             <Route index element={<StudentHome></StudentHome>}></Route>
             <Route path="present" element={<PresentListPage></PresentListPage>}></Route>
+            <Route path="document" element={<Document></Document>}></Route>
             <Route path="quiz" element={<QuizListPage></QuizListPage>}>
                 <Route path="question" element={<QuizQuestion></QuizQuestion>}></Route>
                 <Route path="result" element={<ResultQuizPage></ResultQuizPage>}></Route>

@@ -43,7 +43,7 @@ const StudentHome = () => {
 
     return (
         <div>
-            <div className="flex gap-5">
+            <div className="caroussel-lg:flex gap-5 ">
                 <CardAccountProfile
                     name={student.name}
                     lastName={student.lastName}
