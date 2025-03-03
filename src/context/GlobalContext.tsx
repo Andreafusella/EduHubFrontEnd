@@ -44,6 +44,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     const [loading, setLoading] = useState(false);
     const [lesson, setLesson] = useState<ILessonProps[]>([])
 
+    
     async function handleDeleteSubject(id_subject: number) {
         const confirmDelete = window.confirm("Are you sure you want to delete this subject?");
         if (!confirmDelete) return;
