@@ -12,7 +12,7 @@ import ListStudentCourse from "./components/pages/administrator/ListStudentCours
 import NewQuestion from "./components/pages/administrator/NewQuestion"
 import NewQuiz from "./components/pages/administrator/NewQuiz"
 import StudentPage from "./components/pages/administrator/StudentPage"
-import Subject from "./components/pages/administrator/Subject"
+import Subject from "./components/pages/administrator/Subject1"
 import SubjectInfo from "./components/pages/administrator/SubjectInfo"
 import LessonList from "./components/pages/administrator/SubjectLessonList"
 import LandingPage from "./components/pages/LandingPage"
