@@ -24,9 +24,8 @@ type TLessonSchema = z.infer<typeof LessonSchema>;
 
 function NewLessonFromCourseDialog({ open, handleOpenDialog, id_subject, id_course, subject }: { open: boolean, handleOpenDialog: () => void, id_subject?: number, id_course?: number, subject: ISubjectProps[] }) {
     const [loading, setLoading] = useState(false);
-    const [success, setSuccess] = useState(false);
+    const [, setSuccess] = useState(false);
     const { course } = useGlobalContext();
-    const [selectedSubject, setSelectedSubject] = useState('');
 
     const [selectedCourse, setSelectedCourse] = useState('');
     

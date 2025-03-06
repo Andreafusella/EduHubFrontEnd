@@ -29,25 +29,25 @@ const NewFileDialog: React.FC<NewFileDialogProps> = ({ open, onClose, id_subject
         }
     };
 
-    const handleDragOver = (event: React.DragEvent<HTMLLabelElement>) => {
-        event.preventDefault();
-        event.stopPropagation();
-    };
+    // const handleDragOver = (event: React.DragEvent<HTMLLabelElement>) => {
+    //     event.preventDefault();
+    //     event.stopPropagation();
+    // };
 
-    const handleDrop = (event: React.DragEvent<HTMLLabelElement>) => {
-        event.preventDefault();
-        event.stopPropagation();
+    // const handleDrop = (event: React.DragEvent<HTMLLabelElement>) => {
+    //     event.preventDefault();
+    //     event.stopPropagation();
 
-        const selectedFile = event.dataTransfer.files?.[0];
-        if (selectedFile) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setFilePreview(reader.result as string);
-            };
-            reader.readAsDataURL(selectedFile);
-            setFileDialog(selectedFile);
-        }
-    };
+    //     const selectedFile = event.dataTransfer.files?.[0];
+    //     if (selectedFile) {
+    //         const reader = new FileReader();
+    //         reader.onloadend = () => {
+    //             setFilePreview(reader.result as string);
+    //         };
+    //         reader.readAsDataURL(selectedFile);
+    //         setFileDialog(selectedFile);
+    //     }
+    // };
 
     const handleUpload = async () => {
         if (!fileDialog) return;
@@ -126,8 +126,8 @@ const NewFileDialog: React.FC<NewFileDialogProps> = ({ open, onClose, id_subject
                 </div>
                 <div
                     className="flex items-center justify-center w-full mt-6"
-                    onDragOver={(event: React.DragEvent<HTMLDivElement>) => handleDragOver(event)}
-                    onDrop={(event: React.DragEvent<HTMLDivElement>) => handleDrop(event)}
+                    // onDragOver={(event: React.DragEvent<HTMLDivElement>) => handleDragOver(event)}
+                    // onDrop={(event: React.DragEvent<HTMLDivElement>) => handleDrop(event)}
                 >
                     
                     <label

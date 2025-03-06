@@ -37,7 +37,6 @@ type TRegisterSchema = z.infer<typeof RegisterSchema>
 function NewTeacherDialog({ open, handleOpenDialog, role }: { open: boolean, handleOpenDialog: () => void, role: string }) {
 
     const [loading, setLoading] = useState(false)
-    const [success, setSuccess] = useState(false)
     const [selectedAvatar, setSelectedAvatar] = useState<number>(4);
     const { setTeacher } = useGlobalContext()
 

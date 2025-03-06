@@ -19,9 +19,9 @@ type TCourseSchema = z.infer<typeof CourseSchema>;
 
 function NewCourseDialog({ open, handleOpenDialog }: { open: boolean, handleOpenDialog: () => void }) {
     const [loading, setLoading] = useState(false);
-    const {course, setCourse} = useGlobalContext();
+    const {setCourse} = useGlobalContext();
 
-    const { register, handleSubmit, setValue, formState: { errors, isSubmitting } } = useForm<TCourseSchema>({
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<TCourseSchema>({
         resolver: zodResolver(CourseSchema),
         mode: "onSubmit",
     });

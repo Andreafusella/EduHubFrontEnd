@@ -144,7 +144,8 @@ function NewQuestion() {
                                     className="border-gray-300 shadow-md"
                                 />
                                 <div className="flex flex-col gap-1 w-full">
-                                    <Input
+                                    <h1>prova</h1>
+                                    {/* <Input
                                         {...register(answer, { required: true })}
                                         type="text"
                                         name={answer}
@@ -152,8 +153,8 @@ function NewQuestion() {
                                         value={formData[answer as keyof TFormData]}
                                         onChange={handleInputChange}
                                         className="bg-white h-12 border-b-2 border-t-0 border-l-0 border-r-0 p-2 shadow-md"
-                                    />
-                                    {errors[answer] && <p className="text-red-500">{errors[answer].message}</p>}
+                                    /> */}
+                                    {/* {errors[answer] && <p className="text-red-500">{errors[answer].message}</p>} */}
 
                                 </div>
                             </div>

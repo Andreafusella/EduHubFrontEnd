@@ -56,7 +56,7 @@ function NewQuiz() {
     const id_subject: number = parseInt(queryParams.get('id_subject') || '0', 10);
 
     const [loading, setLoading] = useState(false);
-    const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm<TNewQuizSchema>({
+    const { register, handleSubmit, control, formState: { errors } } = useForm<TNewQuizSchema>({
         resolver: zodResolver(NewQuizSchema),
         mode: "onSubmit",
     })
