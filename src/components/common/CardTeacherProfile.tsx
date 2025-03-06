@@ -1,12 +1,8 @@
 import { useSettingContext } from "@/context/SettingContext"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
-import { Button } from "../ui/button"
-import { Trash } from "lucide-react"
-import { Pencil } from "lucide-react"
-import { Eye } from "lucide-react"
 import IAccountProps from "@/interface/Account"
 
-function CardTeacherProfile({id_account, name, lastName, email, avatar, role}: IAccountProps) {
+function CardTeacherProfile({name, lastName, email, avatar, role}: IAccountProps) {
 
     const {getAvatar} = useSettingContext()
 

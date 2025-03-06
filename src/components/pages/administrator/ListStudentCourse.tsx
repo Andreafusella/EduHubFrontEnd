@@ -1,10 +1,9 @@
 import AccountList from '@/components/commonPlus/AccountList';
 import { Button } from '@/components/ui/button';
 import { useGlobalContext } from '@/context/GlobalContext';
-import { ArrowLeft } from 'lucide-react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 function ListStudentCourse() {
     const location = useLocation();
@@ -14,7 +13,6 @@ function ListStudentCourse() {
     const { setStudentCourse, studentCourse } = useGlobalContext()
     const [loading, setLoading] = useState(false);
 
-    const navigate = useNavigate();
     useEffect(() => {
         async function fetchGetStudents() {
             try {

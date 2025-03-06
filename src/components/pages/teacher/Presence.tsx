@@ -2,7 +2,7 @@ import CardStudentPresence from "@/components/common/CardStudentPresence";
 import { Button } from "@/components/ui/button";
 import IAccountProps from "@/interface/Account";
 import axios from "axios";
-import { ArrowLeft, Trash } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";

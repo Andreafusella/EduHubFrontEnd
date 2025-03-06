@@ -10,7 +10,7 @@ function CardQuiz({ quiz, id_account }: { quiz: IQuiz, id_account: number }) {
     const [scoreList, setScoreList] = useState<IScore[] | null>(null);
     const [averageScore, setAverageScore] = useState<number>(0);
     const maxScore : number = 10;
-    const [loading, setLoading] = useState(false);
+    const [, setLoading] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {

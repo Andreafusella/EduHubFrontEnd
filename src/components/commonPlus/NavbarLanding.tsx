@@ -2,10 +2,8 @@ import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { useAuth } from "@/context/AuthContext";
 
 function NavbarLanding() {
-    const {logOut} = useAuth()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const token = localStorage.getItem("token")
     const role = localStorage.getItem("role")

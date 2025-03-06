@@ -2,7 +2,7 @@ import { useSettingContext } from "@/context/SettingContext"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import IAccountProps from "@/interface/Account"
 
-function CardAdminProfile({id_account, name, lastName, email, avatar, role}: IAccountProps) {
+function CardAdminProfile({name, lastName, email, avatar, role}: IAccountProps) {
 
     const {getAvatar} = useSettingContext()
 

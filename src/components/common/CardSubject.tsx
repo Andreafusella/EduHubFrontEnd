@@ -4,7 +4,7 @@ import ISubjectProps from "@/interface/Subject"
 import { Link } from "react-router-dom"
 import { useGlobalContext } from "@/context/GlobalContext";
 
-function CardSubject({id_subject, name, id_teacher, id_course, name_course, name_teacher}: ISubjectProps) {
+function CardSubject({id_subject, name, id_course, name_course, name_teacher}: ISubjectProps) {
 
     const { handleDeleteSubject } = useGlobalContext();
 

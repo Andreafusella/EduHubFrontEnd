@@ -3,7 +3,7 @@ import { Button } from '../ui/button'
 import { ClipboardX, Eye, Pencil, Trash } from 'lucide-react'
 import ICardAccountProps from '@/interface/CardAccount'
 import { useSettingContext } from '@/context/SettingContext'
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useGlobalContext } from '@/context/GlobalContext'
 
 function CardAccountCourse({ id_account, name, last_name, email, avatar }: ICardAccountProps) {

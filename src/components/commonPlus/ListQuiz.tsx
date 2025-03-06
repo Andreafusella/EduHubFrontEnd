@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { Button } from "../ui/button"
 import IQuiz from "@/interface/Quiz";
-import { Dices, List, Pencil, Plus, Trash2 } from "lucide-react";
+import { Dices, Plus, Trash2 } from "lucide-react";
 
 function ListQuiz({ id_subject, quiz, loading, role, handleDeleteQuiz, loadingDeleteQuiz }: { id_subject: number, quiz: IQuiz[], loading: boolean, role: string, handleDeleteQuiz: (id_quiz: number) => void, loadingDeleteQuiz: boolean }) {
     const navigate = useNavigate()

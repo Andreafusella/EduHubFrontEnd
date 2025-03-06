@@ -17,7 +17,7 @@ function SubjectInfoTeacher() {
     const queryParams = new URLSearchParams(location.search);
     const id_subject: number = parseInt(queryParams.get('id_subject') || '0', 10);
     
-    const [course, setCourse] = useState<ICourseProps>();
+    const [, setCourse] = useState<ICourseProps>();
     const [lessons, setLessons] = useState<ILessonProps[]>([]);
     const [loading, setLoading] = useState(true);
     const [subject, setSubject] = useState<ISubjectProps>();

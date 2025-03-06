@@ -1,4 +1,4 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState, useEffect } from "react";
+import { createContext, ReactNode, useContext } from "react";
 
 interface ISettingContextProps{
     getAvatar: (index: number) => string

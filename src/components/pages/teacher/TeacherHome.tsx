@@ -1,9 +1,4 @@
-import { Button } from "@/components/ui/button"
-import { Plus } from "lucide-react"
-import { useNavigate } from "react-router-dom";
-
 const TeacherHome = () => {
-    const navigate = useNavigate();
 
     return (
         <div className="p-4 rounded-xl bg-gray-50 w-[350px]">

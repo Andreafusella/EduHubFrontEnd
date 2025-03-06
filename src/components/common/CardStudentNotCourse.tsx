@@ -8,7 +8,6 @@ function CardStudentNotCourse({
     lastName,
     email,
     avatar,
-    id_account
 }: {
     onClick: () => void;
     borderColor: string;

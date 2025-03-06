@@ -1,16 +1,13 @@
 import NewLessonFromCourseDialog from '@/components/common/dialog/NewLessonFromCourseDialog';
 import List5Lesson from '@/components/commonPlus/List5Lesson';
 import ListScore from '@/components/commonPlus/ListScore';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import IAccountProps from '@/interface/Account';
 import ICourseProps from '@/interface/Course';
 import ILessonProps from '@/interface/Lesson';
 import IScoreListProps from '@/interface/ScoreList';
 import ISubjectProps from '@/interface/Subject';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import {useLocation } from 'react-router-dom';
 
 function Course() {
     const location = useLocation();
@@ -21,10 +18,10 @@ function Course() {
     const [nextLesson, setNextLesson] = useState<ILessonProps[]>([]);
     const [lastLesson, setLastLesson] = useState<ILessonProps[]>([]);
 
-    const [loading, setLoading] = useState(true);
+    const [, setLoading] = useState(true);
     const [loadingNextLesson, setLoadingNextLesson] = useState(true);
     const [loadingLastLesson, setLoadingLastLesson] = useState(true);
-    const [students, setStudents] = useState<IAccountProps[]>([]);
+
     const [subject, setSubject] = useState<ISubjectProps[]>([]);
     const [score, setScore] = useState<IScoreListProps[]>([]);
     const [open, setOpen] = useState(false)

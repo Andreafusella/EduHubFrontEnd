@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { CalendarIcon, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
 import ILessonLastStudentProps from "@/interface/LessonLastStudent";
 import CardLessonCalendar from "@/components/common/CardLessonCalendar";
 import { useGlobalContext } from "@/context/GlobalContext";

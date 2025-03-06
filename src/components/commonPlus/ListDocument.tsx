@@ -1,6 +1,5 @@
-import { useNavigate } from "react-router-dom"
 import { Button } from "../ui/button"
-import { Download, FilePlus, List, Trash2, FileText } from "lucide-react"
+import { Download, FilePlus, Trash2, FileText } from "lucide-react"
 import { useState } from "react"
 import NewFileDialog from "../common/dialog/NewFileDialog"
 import IFile from "@/interface/File";
@@ -8,7 +7,6 @@ import IFile from "@/interface/File";
 function ListDocument({id_subject, loading, file, handleDownloadFile, handleDeleteFile, loadingDeleteFile}: {id_subject: number, loading: boolean, file: IFile[], handleDownloadFile: (file_path: string) => void, handleDeleteFile: (id_file: number) => void, loadingDeleteFile: boolean}) {
 
     const [open, setOpen] = useState(false)
-    const navigate = useNavigate()
     return (
         <div className="bg-gray-50 p-6 rounded-xl w-[500px] shadow-lg mx-auto">
             <div className="flex justify-between items-center my-2">

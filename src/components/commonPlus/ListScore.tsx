@@ -6,7 +6,7 @@ import medal1 from "/public/svg/medal1.svg";
 import medal2 from "/public/svg/medal2.svg";
 import medal3 from "/public/svg/medal3.svg";
 import { Button } from "../ui/button";
-import { useLocation, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 function ListScore({ score, id_course }: { score: IScoreListProps[], id_course: number }) {
     const { getAvatar } = useSettingContext();

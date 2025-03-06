@@ -13,7 +13,6 @@ const AuthContext = createContext<IAuthContextProps | null>(null);
 export const AuthProvider = ({children} : {children: ReactNode}) => {
     const navigate = useNavigate()
     const [role, setRole] = useState<"Student" | "Teacher" | "Administrator" | null>(null);
-    const [id, setId] = useState<string | null>(null);
     
 
     const setAsLogged = (response: {token: string}, role: string, id: number) => {

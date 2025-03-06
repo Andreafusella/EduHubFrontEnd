@@ -1,6 +1,5 @@
 import CardLesson from "@/components/common/CardLesson";
 import { useGlobalContext } from "@/context/GlobalContext";
-import ICourseProps from "@/interface/Course";
 import ILessonProps from "@/interface/Lesson";
 import axios from "axios";
 import { useEffect } from "react";
@@ -28,7 +27,7 @@ function CourseLessonList() {
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {lesson.map((lesson: ILessonProps) => (
-                <CardLesson key={lesson.id_lesson} lesson={lesson} />
+                <CardLesson key={lesson.id_lesson} lesson={lesson} teacher={false} />
             ))}
         </div>
     )

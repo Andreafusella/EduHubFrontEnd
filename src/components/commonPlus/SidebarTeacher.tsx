@@ -1,7 +1,7 @@
 import { useGlobalContext } from "@/context/GlobalContext";
 import ISubjectProps from "@/interface/Subject";
 import axios from "axios";
-import { BookCopy, House, ChevronDown, ChevronRight, Settings2, FileText, LogOut, CalendarIcon } from "lucide-react";
+import { BookCopy, ChevronDown, ChevronRight, Settings2, LogOut, CalendarIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";

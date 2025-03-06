@@ -17,8 +17,8 @@ function StudentPage() {
     const [student, setStudent] = useState<IAccountProps>()
     const [course, setCourse] = useState<ICourseProps[]>([])
     const [lesson, setLesson] = useState<ILessonLastStudentProps[]>([])
-    const [loadingCardStudent, setLoadingCardStudent] = useState(false)
-    const [loadingCourse, setLoadingCourse] = useState(false)
+    const [, setLoadingCardStudent] = useState(false)
+    const [loadingCourse,] = useState(false)
     const [loadingLesson, setLoadingLesson] = useState(false)
     useEffect(() => {
         async function fetchGetStudent() {

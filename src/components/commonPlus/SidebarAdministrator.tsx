@@ -2,7 +2,7 @@ import { useGlobalContext } from "@/context/GlobalContext";
 import ICourseProps from "@/interface/Course";
 import ISubjectProps from "@/interface/Subject";
 import axios from "axios";
-import { BookCopy, ChevronDown, ChevronRight, GraduationCap, House, LogOut, Plus, Settings2, User } from "lucide-react";
+import { BookCopy, ChevronDown, ChevronRight, GraduationCap, LogOut, Plus, Settings2, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";

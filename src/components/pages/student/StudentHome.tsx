@@ -9,7 +9,7 @@ const StudentHome = () => {
     const { student, setStudent } = useStudentContext();
     const id_account = localStorage.getItem("id");
     const [lessons, setLessons] = useState<ILessonLastStudentProps[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [, setLoading] = useState(true);
     const [loadingLessons, setLoadingLessons] = useState(true);
 
     useEffect(() => {

@@ -1,14 +1,9 @@
-import { useGlobalContext } from "@/context/GlobalContext";
-import ICourseProps from "@/interface/Course";
-import axios from "axios";
-import { House, ChevronDown, ChevronRight, GraduationCap, Presentation, TableOfContents, Dices, LogOut, FileText } from "lucide-react";
-import { useEffect, useState } from "react";
+import { House, Presentation, TableOfContents, Dices, LogOut, FileText } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { useAuth } from "@/context/AuthContext";
 
 function SidebarStudent() {
-    const [isCourseOpen, setIsCourseOpen] = useState(false);
     const id = localStorage.getItem("id");
     const {logOut} = useAuth();
 
